@@ -14,6 +14,10 @@ def solution() -> Solution:
     ('(]', False),
     ('([)]', False),
     ('{[]}', True),
+    ('[])', False),
+    ('(([]){})', True),
+    ('', True),
+    ('[', False)
 ))
 def test_is_valid(input_value: str, expected_result: bool, solution: Solution) -> None:
     assert solution.isValid(input_value) is expected_result
