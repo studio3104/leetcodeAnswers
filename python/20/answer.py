@@ -4,7 +4,7 @@ closers = [')', '}', ']']
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        if s == '':
+        if not s:
             return True
 
         stack = []
@@ -14,7 +14,7 @@ class Solution:
                 stack.append(p)
                 continue
 
-            if stack == []:
+            if not stack:
                 return False
 
             last_one = stack.pop()
@@ -22,4 +22,4 @@ class Solution:
             if p != closers[idx]:
                 return False
 
-        return stack == []
+        return not stack
