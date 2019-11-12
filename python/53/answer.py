@@ -1,8 +1,10 @@
-from typing import List
+from typing import List, Tuple
+from functools import lru_cache
 import copy
 
 
-def max_sub_array(nums: List[int], maximum: int = 0) -> int:
+@lru_cache(maxsize=None)
+def max_sub_array(nums: Tuple[int], maximum: int = 0) -> int:
     current: int = sum(nums)
     if maximum == 0 and current < 0 or maximum < current:
         maximum = current
@@ -10,16 +12,17 @@ def max_sub_array(nums: List[int], maximum: int = 0) -> int:
     if len(nums) == 1:
         return maximum
 
-    nums2 = copy.copy(nums)
-    nums.pop(0)
-    nums2.pop()
+    _nums = list(nums)
+    _nums2 = copy.copy(_nums)
+    _nums.pop(0)
+    _nums2.pop()
 
     return max([
-        max_sub_array(nums, maximum),
-        max_sub_array(nums2, maximum),
+        max_sub_array(tuple(_nums), maximum),
+        max_sub_array(tuple(_nums2), maximum),
     ])
 
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        return max_sub_array(nums)
+        return max_sub_array(tuple(nums))
