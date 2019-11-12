@@ -14,10 +14,10 @@ def max_sub_array(nums: List[int], maximum: int = 0) -> int:
     nums.pop(0)
     nums2.pop()
 
-    return sorted([
+    return max([
         max_sub_array(nums, maximum),
         max_sub_array(nums2, maximum),
-    ])[-1]
+    ])
 
 
 class Solution:
