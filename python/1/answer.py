@@ -7,11 +7,14 @@ class Solution:
 
         for i, n in h.items():
             sub = target - n
+            nums.pop(0)
 
             if sub not in nums:
                 continue
 
             for i2, n2 in h.items():
+                if i2 <= i:
+                    continue
                 if sub == n2:
                     return [i, i2]
 
