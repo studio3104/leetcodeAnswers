@@ -5,17 +5,21 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         h = {i: n for i, n in enumerate(nums)}
 
+        found = False
+        finding = 0
+        answer = []
+
         for i, n in h.items():
+            if found and n == finding:
+                answer.append(i)
+                break
+
             sub = target - n
             nums.pop(0)
 
-            if sub not in nums:
-                continue
+            if sub in nums:
+                found = True
+                finding = sub
+                answer.append(i)
 
-            for i2, n2 in h.items():
-                if i2 <= i:
-                    continue
-                if sub == n2:
-                    return [i, i2]
-
-        return []
+        return answer
