@@ -35,4 +35,4 @@ def test_merge_trees(
         expected_result: List[Optional[int]],
         solution: Solution) -> None:
     t1, t2 = (create_tree(l) for l in input_value)
-    assert solution.mergeTrees(t1, t2) == create_tree(expected_result)
+    assert repr(solution.mergeTrees(t1, t2)) == repr(create_tree(expected_result))
