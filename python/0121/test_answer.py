@@ -13,6 +13,7 @@ def solution() -> Solution:
 @pytest.mark.parametrize(('input_value', 'expected_result'), (
     ([7, 1, 5, 3, 6, 4], 5),
     ([7, 6, 4, 3, 1], 0),
+    ([1, 2], 1),
 ))
 def test_is_symmetric(input_value: List[int], expected_result: int, solution: Solution) -> None:
     assert solution.maxProfit(input_value) == expected_result
