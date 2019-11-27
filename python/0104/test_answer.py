@@ -6,6 +6,9 @@ from answer import Solution, TreeNode
 
 
 def create_tree(arr: List[Optional[int]]) -> TreeNode:
+    if not arr:
+        return None
+
     nodes = [TreeNode(n) if n else None for n in arr]
 
     addition = 0
@@ -28,7 +31,9 @@ def solution() -> Solution:
 
 
 @pytest.mark.parametrize(('input_value', 'expected_result'), (
+    ([3, 9, 20, None, None, 15, 7], 3),
+    ([], 0),
 ))
 def test_max_depth(input_value: List[Optional[int]], expected_result: int, solution: Solution) -> None:
     tree = create_tree(input_value)
-    assert solution.maxDepth(tree) is expected_result
+    assert solution.maxDepth(tree) == expected_result

@@ -18,6 +18,19 @@ class TreeNode:
         )
 
 
+def max_depth(root: TreeNode, depth: int = 0) -> int:
+    depth += 1
+    if not root:
+        depth -= 1
+        return depth
+    right = max_depth(root.right, depth)  # type: ignore
+    left = max_depth(root.left, depth)  # type: ignore
+    return sorted([right, left])[-1]
+
+
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
-        pass
+        if not root:
+            return 0
+
+        return max_depth(root)
