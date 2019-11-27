@@ -28,6 +28,8 @@ def solution() -> Solution:
 
 
 @pytest.mark.parametrize(('input_value', 'expected_result'), (
+    ([1, 2, 2, 3, 4, 4, 3], True),
+    ([1, 2, 2, None, 3, None, 3], False),
 ))
 def test_is_symmetric(input_value: List[Optional[int]], expected_result: bool, solution: Solution) -> None:
     tree = create_tree(input_value)
