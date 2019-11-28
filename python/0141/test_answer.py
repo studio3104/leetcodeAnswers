@@ -5,6 +5,19 @@ import pytest
 from answer import Solution, ListNode
 
 
+def create_list_node(arr: List[int], pos: int) -> ListNode:
+    head = ListNode(arr.pop(0))
+    current = head
+    pos_tree = head if pos == 0 else None
+    for i, n in enumerate(arr, 1):
+        current.next = ListNode(n)
+        current = current.next
+        if not pos_tree and i == pos:
+            pos_tree = current
+    current.next = pos_tree
+    return head
+
+
 @pytest.fixture
 def solution() -> Solution:
     return Solution()
@@ -17,14 +30,6 @@ def solution() -> Solution:
 ))
 def test_is_symmetric(input_value: Tuple[List[int], int], expected_result: int, solution: Solution) -> None:
     arr, pos = input_value
-    head = ListNode(arr.pop(0))
-    current = head
-    pos_tree = head if pos == 0 else None
-    for i, n in enumerate(arr, 1):
-        current.next = ListNode(n)
-        current = current.next
-        if not pos_tree and i == pos:
-            pos_tree = current
-    current.next = pos_tree
+    head = create_list_node(arr, pos)
 
     assert solution.hasCycle(head) == expected_result
