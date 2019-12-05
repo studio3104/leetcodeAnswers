@@ -13,11 +13,9 @@ def invert_tree(node: TreeNode) -> TreeNode:
     if not node:
         return node
 
-    inverted = TreeNode(node.val)
-    inverted.right = invert_tree(node.left)  # type: ignore
-    inverted.left = invert_tree(node.right)  # type: ignore
+    node.right, node.left = invert_tree(node.left), invert_tree(node.right)  # type: ignore
 
-    return inverted
+    return node
 
 
 class Solution:
