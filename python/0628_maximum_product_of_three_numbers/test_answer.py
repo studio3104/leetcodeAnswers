@@ -14,6 +14,7 @@ def solution() -> Solution:
     ([1, 2, 3], 6),
     ([1, 2, 3, 4], 24),
     ([-1, -2, -3], -6),
+    ([-4, -3, -2, -1, 60], 720),
 ))
 def test_is_valid(input_value: List[int], expected_result: int, solution: Solution) -> None:
     assert solution.maximumProduct(input_value) == expected_result
