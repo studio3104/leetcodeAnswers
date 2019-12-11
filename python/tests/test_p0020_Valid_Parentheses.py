@@ -1,6 +1,6 @@
 import pytest
 
-from answer import Solution
+from p0020_Valid_Parentheses import Solution
 
 
 @pytest.fixture
