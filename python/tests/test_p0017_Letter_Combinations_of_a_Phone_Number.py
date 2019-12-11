@@ -2,7 +2,7 @@ from typing import List
 
 import pytest
 
-from answer import Solution
+from p0017_Letter_Combinations_of_a_Phone_Number import Solution
 
 
 @pytest.fixture
