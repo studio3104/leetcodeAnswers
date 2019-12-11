@@ -1,6 +1,6 @@
 import pytest
 
-from answer import Solution
+from p0001_Two_Sum import Solution
 
 
 @pytest.fixture
