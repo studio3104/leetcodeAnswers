@@ -12,7 +12,9 @@ def solution() -> Solution:
 
 
 @pytest.mark.parametrize(('input_value', 'expected_result'), (
-    (([2, 4, 3], [5, 6, 4]), [7, 0, 8]),
+    # (([2, 4, 3], [5, 6, 4]), [7, 0, 8]),
+    # (([5], [5]), [0, 1]),
+    (([1, 8], [0]), [1, 8]),
 ))
 def test_is_valid(input_value: Tuple[List[int]], expected_result: List[int], solution: Solution) -> None:
     l1, l2 = create_list_node(input_value[0]), create_list_node(input_value[1])  # type: ignore
