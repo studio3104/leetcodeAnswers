@@ -2,47 +2,35 @@ from typing import List
 
 
 class Solution:
+    def _mark_neighbors(self, i_col: int, i_row: int) -> None:
+        if i_col < 0 or i_row < 0:
+            return
+
+        if i_col >= self.num_columns or i_row >= self.num_rows:
+            return
+
+        if self.grid[i_col][i_row] != '1':
+            return
+
+        self.grid[i_col][i_row] = ''
+        self._mark_neighbors(i_col, i_row + 1)  # right
+        self._mark_neighbors(i_col, i_row - 1)  # left
+        self._mark_neighbors(i_col - 1, i_row)  # up
+        self._mark_neighbors(i_col + 1, i_row)  # down
+
     def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return 0
+
+        self.grid = grid
+        self.num_columns = len(grid)
+        self.num_rows = len(grid[-1])
         num_islands = 0
 
-        for row in grid:
-            if '1' not in row:
-                continue
-
-            for i, e in enumerate(row):
-                if e == '0':
-                    continue
-
-                if not num_islands:
+        for i_col in range(self.num_columns):
+            for i_row in range(self.num_rows):
+                if self.grid[i_col][i_row] == '1':
                     num_islands += 1
-
-        return num_islands
-
-    def _numIslands(self, grid: List[List[str]]) -> int:
-        num_islands = 0
-        islands_immediately_before: List[int] = []
-
-        for k, row in enumerate(grid):
-        # for row in grid:
-            if '1' not in row:
-                islands_immediately_before.clear()
-                continue
-
-            islands: List[int] = []
-
-            for i, e in enumerate(row):
-                if e == '0':
-                    continue
-
-                islands.append(i)
-
-                if i - 1 not in islands and i not in islands_immediately_before:
-                    if len(row) > 1 and i == 0 and row[1] == '1' and islands_immediately_before:
-                        continue
-
-                    print(f'k: {k}, i: {i}')
-                    num_islands += 1
-
-            islands_immediately_before = islands
+                    self._mark_neighbors(i_col, i_row)
 
         return num_islands
