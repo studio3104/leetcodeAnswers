@@ -10,7 +10,13 @@ from p0146_LRU_Cache import LRUCache
         LRUCache(2),
         ('put', 'put', 'get', 'put', 'get', 'put', 'get', 'get', 'get'),
         ([1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]),
-        (None, None, None, 1, None, -1, None, -1, 3, 4),
+        (None, None, 1, None, -1, None, -1, 3, 4),
+    ),
+    (
+        LRUCache(2),
+        ('put', 'put', 'put', 'put', 'get', 'get'),
+        ([2, 1], [1, 1], [2, 3], [4, 1], [1], [2]),
+        (None, None, None, None, -1, 3),
     ),
 ))
 def test_is_valid(
