@@ -11,6 +11,7 @@ def solution() -> Solution:
 @pytest.mark.parametrize(('input_value', 'expected_result'), (
     ('babad', 'aba'),
     ('cbbd', 'bb'),
+    ('cbbbbd', 'bbbb'),
 ))
 def test_is_valid(input_value: str, expected_result: str, solution: Solution) -> None:
     assert solution.longestPalindrome(input_value) == expected_result
