@@ -8,32 +8,20 @@ class Solution:
         result = []
 
         for i in range(self.len_string):
-            result.append(self.check_odd(i, 1, string[i]))
+            result.append(self.find_palindromic(i, 1, string[i]))
             if self.len_string > i + 1 and string[i] == string[i + 1]:
-                result.append(self.check_even(i, i + 1, 1, string[i:(i + 2)]))
+                result.append(self.find_palindromic(i, 1, string[i:(i + 2)], True))
 
         return sorted(result, key=len)[-1]
 
-    def check_odd(self, index: int, width: int, palindromic: str) -> str:
-        if index < width or self.len_string <= index + width:
+    def find_palindromic(self, index: int, width: int, palindromic: str, is_even: bool = False) -> str:
+        index_b = index + 1 if is_even else index
+
+        if not palindromic or index < width or self.len_string <= index_b + width:
             return palindromic
 
-        _prev, _next = self.string[index - width], self.string[index + width]
-
-        if _prev == _next:
-            palindromic = self.string[(index - width):(index + width + 1)]
-            return self.check_odd(index, width + 1, palindromic)
-
-        return palindromic
-
-    def check_even(self, index_a: int, index_b: int, width: int, palindromic: str) -> str:
-        if not palindromic or index_a < width or self.len_string <= index_b + width:
-            return palindromic
-
-        _prev, _next = self.string[index_a - width], self.string[index_b + width]
-
-        if _prev == _next:
-            palindromic = self.string[(index_a - width):(index_b + width + 1)]
-            return self.check_even(index_a, index_b, width + 1, palindromic)
+        if self.string[index - width] == self.string[index_b + width]:
+            palindromic = self.string[(index - width):(index_b + width + 1)]
+            return self.find_palindromic(index, width + 1, palindromic, is_even)
 
         return palindromic
