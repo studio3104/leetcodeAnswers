@@ -8,20 +8,19 @@ class Solution:
         result = []
 
         for i in range(self.len_string):
-            result.append(self.find_palindromic(i, 1, string[i]))
+            result.append(self.find_palindromic(i))
             if self.len_string > i + 1 and string[i] == string[i + 1]:
-                result.append(self.find_palindromic(i, 1, string[i:(i + 2)], True))
+                result.append(self.find_palindromic(i, True))
 
         return sorted(result, key=len)[-1]
 
-    def find_palindromic(self, index: int, width: int, palindromic: str, is_even: bool = False) -> str:
+    def find_palindromic(self, index: int, is_even: bool = False) -> str:
         index_b = index + 1 if is_even else index
+        width = 1
 
-        if not palindromic or index < width or self.len_string <= index_b + width:
-            return palindromic
+        while index >= width and self.len_string > index_b + width:
+            if self.string[index - width] != self.string[index_b + width]:
+                break
+            width += 1
 
-        if self.string[index - width] == self.string[index_b + width]:
-            palindromic = self.string[(index - width):(index_b + width + 1)]
-            return self.find_palindromic(index, width + 1, palindromic, is_even)
-
-        return palindromic
+        return self.string[(index - width + 1):(index_b + width)]
