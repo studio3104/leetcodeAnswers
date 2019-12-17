@@ -14,8 +14,8 @@ def solution() -> Solution:
     (
         ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'],
         [
-              ['ate', 'eat', 'tea'],
-              ['nat', 'tan'],
+              ['eat', 'tea', 'ate'],
+              ['tan', 'nat'],
               ['bat'],
         ],
     ),
