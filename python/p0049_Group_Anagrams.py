@@ -1,27 +1,22 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        hash_memo: List[Dict[str, int]] = []
-        memo: Dict[int, List[str]] = {}
+        memo: Dict[Tuple, List[str]] = {}
+        a_ascii = ord('a')
 
         for s in strs:
-            d: Dict[str, int] = {}
+            c: List[int] = [0] * 26
+
             for _s in s:
-                if _s in d:
-                    d[_s] += 1
-                else:
-                    d[_s] = 1
+                c[ord(_s) - a_ascii] += 1
 
-            if d not in hash_memo:
-                hash_memo.append(d)
+            tc = tuple(c)
 
-            index = hash_memo.index(d)
+            if tc not in memo:
+                memo[tc] = []
 
-            if index not in memo:
-                memo[index] = []
-
-            memo[index].append(s)
+            memo[tc].append(s)
 
         return [val for _, val in memo.items()]
