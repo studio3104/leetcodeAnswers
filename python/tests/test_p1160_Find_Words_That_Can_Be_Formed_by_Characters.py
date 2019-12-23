@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 
 import pytest
 
@@ -12,5 +12,5 @@ def solution() -> Solution:
 
 @pytest.mark.parametrize(('input_value', 'expected_result'), (
 ))
-def test_is_valid(input_value: List[str], expected_result: int, solution: Solution) -> None:
+def test_is_valid(input_value: Tuple[List[str], str], expected_result: int, solution: Solution) -> None:
     assert solution.countCharacters(input_value) == expected_result
