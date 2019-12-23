@@ -11,6 +11,11 @@ def solution() -> Solution:
 
 
 @pytest.mark.parametrize(('input_value', 'expected_result'), (
+    ('abcabcbb', 3),
+    ('bbbbb', 1),
+    ('pwwkew', 3),
+    ('dvdf', 3),
+    ('dssvdf', 4),
 ))
 def test_is_valid(input_value: str, expected_result: int, solution: Solution) -> None:
     assert solution.lengthOfLongestSubstring(input_value) == expected_result
