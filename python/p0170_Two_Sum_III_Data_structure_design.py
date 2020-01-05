@@ -4,27 +4,20 @@ import pytest
 
 class TwoSum:
     def __init__(self) -> None:
-        """
-        Initialize your data structure here.
-        """
-        self.nums: List[int] = []
+        self.appering_multiple_times: Dict[int, None] = {}
         self.hashmap: Dict[int, int] = {}
 
     def add(self, number: int) -> None:
-        """
-        Add the number to an internal data structure..
-        """
-        self.nums.append(number)
-        self.hashmap[number] = len(self.nums) - 1
+        if number in self.hashmap:
+            self.appering_multiple_times[number] = None
+        self.hashmap[number] = len(self.hashmap) + len(self.appering_multiple_times)
 
     def find(self, value: int) -> bool:
-        """
-        Find if there exists any pair of numbers which sum is equal to the value.
-        """
-        for i, n in enumerate(self.nums):
+        for n, i in self.hashmap.items():
             t = value - n
-            if t in self.hashmap and i != self.hashmap[t]:
-                return True
+            if t in self.hashmap:
+                if i != self.hashmap[t] or t in self.appering_multiple_times:
+                    return True
 
         return False
 
