@@ -1,10 +1,24 @@
 from typing import Dict, List, Tuple
 import pytest
+import re
+
+from collections import Counter
+
+
+PUNCTUATION_PATTERN = re.compile(r"[!\?',;\.]+")
 
 
 class Solution:
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
-        pass
+        answer = ''
+        words = re.sub(PUNCTUATION_PATTERN, ' ', paragraph.lower()).split(' ')
+        counter = Counter(words)
+        for word, count in counter.most_common():
+            if not word or word in banned:
+                continue
+            answer = word
+            break
+        return answer
 
 
 @pytest.fixture
@@ -17,6 +31,10 @@ def solution() -> Solution:
         ('Bob hit a ball, the hit BALL flew far after it was hit.', ['hit']),
         'ball',
     ),
+    (
+        ('a, a, a, a, b,b,b,c, c', ['a']),
+        'b',
+    ),
 ))
 def test_is_valid(input_value: Tuple[str, List[str]], expected_result: str, solution: Solution) -> None:
-    assert sorted(solution.mostCommonWord(*input_value)) == expected_result
+    assert solution.mostCommonWord(*input_value) == expected_result
