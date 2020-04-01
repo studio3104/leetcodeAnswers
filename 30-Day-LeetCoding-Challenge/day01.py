@@ -2,6 +2,8 @@ from typing import Dict, List
 
 import pytest
 
+from functools import reduce
+
 
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
@@ -18,13 +20,16 @@ class Solution:
 
         return 0  # It won't be evaluated, Just to avoid MyPy error.
 
+    def singleNumber2(self, nums: List[int]) -> int:
+        return reduce(lambda a, b: a ^ b, nums, 0)
+
 
 class TestSolution:
     @pytest.fixture
     def solution(self) -> Solution:
         return Solution()
 
-    @pytest.mark.parametrize('method_name', ('singleNumber', ))
+    @pytest.mark.parametrize('method_name', ('singleNumber', 'singleNumber2'))
     @pytest.mark.parametrize(('input_value', 'expected_value'), (
         ([2, 2, 1], 1),
     ))
