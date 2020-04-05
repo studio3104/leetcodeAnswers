@@ -5,7 +5,14 @@ import pytest
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        pass
+        gain: int = 0
+
+        for i in range(1, len(prices)):
+            _gain = prices[i] - prices[i - 1]
+            if _gain > 0:
+                gain += _gain
+
+        return gain
 
 
 class TestSolution:
