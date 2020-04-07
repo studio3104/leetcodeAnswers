@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import List, Set
 
 import pytest
 
@@ -8,14 +8,12 @@ class Solution:
         return len([i for i in range(len(arr)) if arr[i] + 1 in arr])
 
     def countElements(self, arr: List[int]) -> int:
-        counter: Dict[int, int] = {}
-
+        hs: Set[int] = set(arr)
+        result: int = 0
         for n in arr:
-            if n not in counter:
-                counter[n] = 0
-            counter[n] += 1
-
-        return len([n for n in arr if n + 1 in counter])
+            if n + 1 in hs:
+                result += 1
+        return result
 
 
 class TestSolution:
