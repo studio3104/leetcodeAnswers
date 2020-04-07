@@ -5,7 +5,6 @@ import pytest
 
 class Solution:
     def countElements(self, arr: List[int]) -> int:
-        result: int = 0
         counter: Dict[int, int] = {}
 
         for n in arr:
@@ -13,12 +12,7 @@ class Solution:
                 counter[n] = 0
             counter[n] += 1
 
-        for n in arr:
-            np = n + 1
-            if np in counter and counter[np] > 0:
-                result += 1
-
-        return result
+        return len([n for n in arr if n + 1 in counter])
 
 
 class TestSolution:
