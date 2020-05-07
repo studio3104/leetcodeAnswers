@@ -1,11 +1,25 @@
 from typing import List
 
+import heapq
+
 import pytest
 
 
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
-        pass
+        stones = [s * -1 for s in stones]
+        heapq.heapify(stones)
+
+        while len(stones) > 1:
+            a = heapq.heappop(stones)
+            b = heapq.heappop(stones)
+
+            if a == b:
+                continue
+
+            heapq.heappush(stones, a - b)
+
+        return stones[0] * -1 if stones else 0
 
 
 class TestSolution:
