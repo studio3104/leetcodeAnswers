@@ -14,10 +14,8 @@ class Solution:
             a = heapq.heappop(stones)
             b = heapq.heappop(stones)
 
-            if a == b:
-                continue
-
-            heapq.heappush(stones, a - b)
+            if a != b:
+                heapq.heappush(stones, a - b)
 
         return stones[0] * -1 if stones else 0
 
