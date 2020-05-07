@@ -7,7 +7,19 @@ import pytest
 
 class Solution:
     def middleNode(self, head: ListNode) -> ListNode:
-        pass
+        num_elements = 0
+        list_node = head
+        while True:
+            num_elements += 1
+            if list_node.next is None:
+                break
+            list_node = list_node.next
+
+        answer = head
+        for _ in range(num_elements // 2):
+            answer = answer.next
+
+        return answer
 
 
 class TestSolution:
@@ -24,4 +36,4 @@ class TestSolution:
             self, solution: Solution, method_name: str,
             input_value: List[int], expected_value: List[int]) -> None:
 
-        assert getattr(solution, method_name)(input_value) == ListNode.from_list(expected_value)
+        assert list(getattr(solution, method_name)(ListNode.from_list(input_value))) == expected_value
