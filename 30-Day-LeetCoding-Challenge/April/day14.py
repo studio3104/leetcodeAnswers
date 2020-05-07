@@ -11,13 +11,11 @@ class Solution:
             return ''
 
         amount = 0
-
         for _s in shift:
-            sign = 1
             if _s[0] == 0:  # Left
-                sign = -1
-
-            amount += _s[1] * sign
+                amount -= _s[1]
+            else:  # Right
+                amount += _s[1]
 
         right_direction = True
         if amount < 0:
@@ -26,7 +24,6 @@ class Solution:
         amount = amount % len(s)
 
         string = deque(s)
-
         for _ in range(amount):
             if right_direction:
                 string.appendleft(string.pop())
