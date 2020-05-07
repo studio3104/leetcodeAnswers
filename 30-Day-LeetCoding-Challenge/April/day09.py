@@ -1,13 +1,25 @@
-from .structures import ListNode
-
-from typing import Tuple
+from typing import List, Tuple
 
 import pytest
 
 
 class Solution:
     def backspaceCompare(self, S: str, T: str) -> bool:
-        pass
+        _S: List[str] = []
+        for s in S:
+            if s != '#':
+                _S.append(s)
+            elif _S:
+                _S.pop(-1)
+
+        _T: List[str] = []
+        for t in T:
+            if t != '#':
+                _T.append(t)
+            elif _T:
+                _T.pop(-1)
+
+        return _S == _T
 
 
 class TestSolution:
