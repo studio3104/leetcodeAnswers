@@ -7,36 +7,31 @@ import pytest
 
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
-        w1 = []
-        w2 = []
+        l1 = len(word1)
+        l2 = len(word2)
 
-        for i in range(max(len(word1), len(word2))):
-            if len(word1) > i:
-                w1.append(word1[i])
-            else:
-                w1.append('x')
+        if l1 * l2 == 0:
+            return l1 + l2
 
-            if len(word2) > i:
-                w2.append(word2[i])
-            else:
-                w2.append('x')
+        d: List[List[int]] = [[0] * (l2 + 1) for _ in range(l1 + 1)]
 
-        count = 0
-        for i in range(len(w1)):
-            if w1[i] == w2[i]:
-                continue
+        for i in range(l1 + 1):
+            d[i][0] = i
+        for i in range(l2 + 1):
+            d[0][i] = i
 
-            if len(w1) > i + 1 and w1[i+1] == w2[i]:
-                del(w1[i+1])
-                w1.append('x')
+        for n in range(1, l1 + 1):
+            for m in range(1, l2 + 1):
+                left = d[n - 1][m]
+                below = d[n][m - 1]
+                left_below = d[n - 1][m - 1]
 
-            if len(w2) > i + 1 and w2[i+1] == w1[i]:
-                del(w2[i+1])
-                w2.append('x')
+                if word1[n - 1] == word2[m - 1]:
+                    left_below -= 1
 
-            count += 1
+                d[n][m] = 1 + min(left, below, left_below)
 
-        return count
+        return d[l1][l2]
 
 
 class TestSolution:
