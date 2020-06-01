@@ -5,18 +5,11 @@ import pytest
 from April.structures import TreeNode
 
 
-def invert_tree(t: Optional[TreeNode]) -> Optional[TreeNode]:
-    if t is None:
-        return t
-
-    t.left, t.right = invert_tree(t.right), invert_tree(t.left)
-
-    return t
-
-
 class Solution:
-    def invertTree(self, root: TreeNode) -> Optional[TreeNode]:
-        return invert_tree(root)
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root is not None:
+            root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        return root
 
 
 class TestSolution:
