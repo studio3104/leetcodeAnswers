@@ -1,5 +1,6 @@
 from typing import List
 
+import bisect
 import random
 
 
@@ -29,3 +30,16 @@ class Solution:
                 ans = i
                 break
         return ans
+
+
+class Solution2:
+    def __init__(self, w: List[int]):
+        self.c = []
+        self.s = 0
+        for n in w:
+            self.s += n
+            self.c.append(self.s)
+
+    def pickIndex(self) -> int:
+        t = random.random() * self.s
+        return bisect.bisect_left(self.c, t)
