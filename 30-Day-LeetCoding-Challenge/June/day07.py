@@ -5,7 +5,19 @@ import pytest
 
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        pass
+        matrix: List[List[int]] = [[1] + [0] * amount]
+
+        for r in range(1, len(coins) + 1):
+            matrix.append([0] * (amount + 1))
+
+            for c in range(amount + 1):
+                matrix[r][c] = matrix[r - 1][c]
+
+                c2 = c - coins[r - 1]
+                if c2 >= 0:
+                    matrix[r][c] += matrix[r][c2]
+
+        return matrix[len(coins)][amount]
 
 
 class TestSolution:
