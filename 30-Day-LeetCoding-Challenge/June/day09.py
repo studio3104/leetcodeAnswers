@@ -5,7 +5,15 @@ import pytest
 
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        pass
+        p = 0
+
+        for _t in t:
+            if len(s) == p:
+                return True
+            if _t == s[p]:
+                p += 1
+
+        return len(s) == p
 
 
 class TestSolution:
