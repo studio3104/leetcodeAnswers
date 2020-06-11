@@ -1,13 +1,13 @@
-from typing import List
+from typing import Dict, List
 
 
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
-        counter = {0: 0, 1: 0, 2: 0}
+        counter: Dict[int, int] = {i: 0 for i in range(min(nums), max(nums) + 1)}
         for n in nums:
             counter[n] += 1
 
-        current = 0
+        current = min(nums)
         for i in range(len(nums)):
             while counter[current] == 0:
                 current += 1
