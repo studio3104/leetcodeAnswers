@@ -1,5 +1,7 @@
 from typing import Dict, List
 
+import copy
+
 import pytest
 
 
@@ -15,11 +17,10 @@ class Solution:
             if nums[current] == 0:
                 nums[current], nums[p0] = nums[p0], nums[current]
                 p0 += 1
-
-            if nums[current] in (0, 1):
                 current += 1
-
-            if nums[current] == 2:
+            elif nums[current] == 1:
+                current += 1
+            elif nums[current] == 2:
                 nums[current], nums[p2] = nums[p2], nums[current]
                 p2 -= 1
 
@@ -49,5 +50,6 @@ class TestSolution:
             self, solution: Solution, method_name: str,
             input_value: List[int], expected_value: List[int]) -> None:
 
-        getattr(solution, method_name)(input_value)
-        input_value == expected_value
+        iv = copy.copy(input_value)
+        getattr(solution, method_name)(iv)
+        iv == expected_value
