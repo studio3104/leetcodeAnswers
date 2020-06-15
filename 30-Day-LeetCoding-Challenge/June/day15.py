@@ -6,11 +6,12 @@ import pytest
 
 
 class Solution:
-    def searchBST(self, root: TreeNode, val: int) -> Optional[TreeNode]:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         if root is None or root.val == val:
             return root
 
-        if root.val > val:
+        # Ignore the type of root because it's guaranteed that it's not None by the above condition
+        if root.val > val:  # type: ignore
             return self.searchBST(root.left, val)
         else:
             return self.searchBST(root.right, val)
