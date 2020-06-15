@@ -10,14 +10,10 @@ class Solution:
         if root is None or root.val == val:
             return root
 
-        right, left = self.searchBST(root.right, val), self.searchBST(root.left, val)
-
-        if right is not None and right.val is not None:
-            return right
-        if left is not None and left.val is not None:
-            return left
-
-        return None
+        if root.val > val:
+            return self.searchBST(root.left, val)
+        else:
+            return self.searchBST(root.right, val)
 
 
 class TestSolution:
