@@ -35,10 +35,7 @@ class Solution:
 
         for r in range(row_length):
             for c in range(col_length):
-                if board[r][c] == 'O':
-                    board[r][c] = 'X'
-                elif board[r][c] == 'B':
-                    board[r][c] = 'O'
+                board[r][c] = 'O' if board[r][c] == 'B' else 'X'
 
 
 class TestSolution:
