@@ -8,9 +8,6 @@ class Solution:
         if not root or root.val is None:
             return count
 
-        if root.right is None and root.left is None:
-            return count + 1
-        
         return 1 + self.countNodes(root.right) + self.countNodes(root.left)
 
 
