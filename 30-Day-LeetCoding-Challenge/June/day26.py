@@ -7,17 +7,17 @@ import pytest
 
 class Solution:
     def sumNumbers(self, root: TreeNode) -> int:
-        def DFS(tree: TreeNode, num_str: str = '') -> int:
-            num_str = f'{num_str}{tree.val}'
+        def DFS(tree: TreeNode, num: int = 0) -> int:
+            num = num * 10 + tree.val
 
             if not tree.left and not tree.right:
-                return int(num_str)
+                return num
 
             answer = 0
             if tree.left:
-                answer += DFS(tree.left, num_str)
+                answer += DFS(tree.left, num)
             if tree.right:
-                answer += DFS(tree.right, num_str)
+                answer += DFS(tree.right, num)
 
             return answer
 
