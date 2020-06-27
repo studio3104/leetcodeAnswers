@@ -1,20 +1,19 @@
-from typing import List
-
 import pytest
 
 import math
+import sys
 
 
 class Solution(object):
-    def numSquares(self, n):
+    def numSquares(self, n: int) -> int:
         square_nums = [i ** 2 for i in range(0, int(math.sqrt(n)) + 1)]
-        dp = [0] + [float('inf') for _ in range(n)]
+        dp = [sys.maxsize for _ in range(n + 1)]
+        dp[0] = 0
 
         for square in square_nums:
             for i in range(square, n + 1):
                 dp[i] = min(dp[i], dp[i - square] + 1)
 
-        print(dp)
         return dp[-1]
 
 
