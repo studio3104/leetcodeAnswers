@@ -3,47 +3,36 @@ from typing import List, Dict
 import pytest
 
 import bisect
+from collections import defaultdict
 
 
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        route: Dict[str, List[str]] = {}
+        route: Dict[str, List[str]] = defaultdict(list)
+        marked: Dict[str, List[int]] = defaultdict(list)
+
         for ticket in tickets:
-            f, t = (ticket[0], ticket[1])
-            if f not in route:
-                route[f] = []
-            bisect.insort(route[f], t)
+            bisect.insort(route[ticket[0]], ticket[1])
 
-        marked: List[str] = []
-        itinerary: List[str] = ['JFK']
+        def find_route(departure: str, itinerary: List[str]) -> bool:
+            if len(itinerary) == len(tickets) + 1:
+                self.result = itinerary
+                return True
 
-        def append_itinerary(src: str) -> str:
-            _n = route[src][0]
+            for i, destination in enumerate(route[departure]):
+                if i not in marked[departure]:
+                    marked[departure].append(i)
+                    res = find_route(destination, itinerary + [destination])
+                    marked[departure].remove(i)
+                    print(f'res: {res}, departure: {departure}, destination: {destination}, itinerary: {itinerary}')
+                    if res:
+                        return True
 
-            if len(route[src]) == 1:
-                if itinerary[-1] != src:
-                    itinerary.append(src)
-                itinerary.append(route[src][0])
-            else:
-                for dst in route[src]:
-                    if itinerary[-1] != src:
-                        itinerary.append(src)
-                    if dst in route:
-                        _n = dst
-                    if dst not in marked:
-                        itinerary.append(dst)
+            return False
 
-            marked.append(src)
-            del(route[src])
-            return _n
-
-        n = append_itinerary('JFK')
-        while route:
-            n = append_itinerary(n)
-            if n not in route:
-                break
-
-        return itinerary
+        print()
+        find_route('JFK', ['JFK'])
+        return self.result
 
 
 class TestSolution:
@@ -53,18 +42,22 @@ class TestSolution:
 
     @pytest.mark.parametrize('method_name',  ('findItinerary', ))
     @pytest.mark.parametrize(('input_value',  'expected_value'), (
+        # (
+        #     [['MUC',  'LHR'],  ['JFK',  'MUC'],  ['SFO',  'SJC'],  ['LHR',  'SFO']],
+        #     ['JFK',  'MUC',  'LHR',  'SFO',  'SJC'],
+        # ),
+        # (
+        #     [['JFK', 'SFO'], ['JFK', 'ATL'], ['SFO', 'ATL'], ['ATL', 'JFK'], ['ATL', 'SFO']],
+        #     ['JFK', 'ATL', 'JFK', 'SFO', 'ATL', 'SFO'],
+        # ),
+        # (
+        #     [['JFK', 'KUL'], ['JFK', 'NRT'], ['NRT', 'JFK']],
+        #     ['JFK', 'NRT', 'JFK', 'KUL'],
+        # ),
         (
-            [['MUC',  'LHR'],  ['JFK',  'MUC'],  ['SFO',  'SJC'],  ['LHR',  'SFO']],
-            ['JFK',  'MUC',  'LHR',  'SFO',  'SJC'],
+            [['JFK', 'KUL'], ['JFK', 'NRT'], ['NRT', 'JFK'], ['JFK', 'NRT'], ['NRT', 'JFK']],
+            ['JFK', 'NRT', 'JFK', 'NRT', 'JFK', 'KUL'],
         ),
-        (
-            [['JFK', 'SFO'], ['JFK', 'ATL'], ['SFO', 'ATL'], ['ATL', 'JFK'], ['ATL', 'SFO']],
-            ['JFK', 'ATL', 'JFK', 'SFO', 'ATL', 'SFO'],
-        ),
-        (
-            [['JFK', 'KUL'], ['JFK', 'NRT'], ['NRT', 'JFK']],
-            ['JFK', 'KUL', 'JFK', 'NRT', 'JFK'],
-        )
     ))
     def test_solution(
             self, solution: Solution, method_name: str,
