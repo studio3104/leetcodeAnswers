@@ -1,12 +1,60 @@
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Set, Optional
 
 import pytest
 
 from collections import defaultdict
 
 
+class TrieNode:
+    def __init__(self) -> None:
+        self.nodes: Dict[str, TrieNode] = defaultdict(TrieNode)
+        self.word: Optional[str] = None
+
+    def insert(self, word: str) -> None:
+        current = self
+        for c in word:
+            current = current.nodes[c]
+        current.word = word
+
+
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        trie = TrieNode()
+        for word in words:
+            trie.insert(word)
+
+        answer: Set[str] = set()
+
+        def find(parent: TrieNode, row: int, col: int):
+            char = board[row][col]
+            child = parent.nodes[char]
+
+            if child.word:
+                answer.add(child.word)
+
+            board[row][col] = '_'
+
+            for (ro, co) in ((1, 0), (0, 1), (-1, 0), (0, -1)):
+                _row, _col = row + ro, col + co
+                if _row < 0 or _col < 0 or _row >= len(board) or _col >= len(board[0]):
+                    continue
+                if board[_row][_col] not in child.nodes:
+                    continue
+                find(child, _row, _col)
+
+            board[row][col] = char
+
+            if not child.nodes:
+                parent.nodes.pop(char)
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] in trie.nodes:
+                    find(trie, i, j)
+
+        return list(answer)
+
+    def findWordsTLE(self, board: List[List[str]], words: List[str]) -> List[str]:
         indexes: Dict[str, List[Tuple[int, int]]] = defaultdict(list)
         for i, b in enumerate(board):
             for j, c in enumerate(b):
@@ -53,7 +101,7 @@ class TestSolution:
     def solution(self) -> Solution:
         return Solution()
 
-    @pytest.mark.parametrize('method_name', ('findWords', ))
+    @pytest.mark.parametrize('method_name', ('findWords', 'findWordsTLE', ))
     @pytest.mark.parametrize(('input_value', 'expected_value'), (
         (
             (
@@ -80,10 +128,13 @@ class TestSolution:
         ),
         (
             (
-                [["a","b"],["a","a"]],
-                ["aba","baa","bab","aaab","aaa","aaaa","aaba"]
+                [
+                    ['a', 'b'],
+                    ['a', 'a'],
+                ],
+                ['aba', 'baa', 'bab', 'aaab', 'aaa', 'aaaa', 'aaba'],
             ),
-            ["aaa","aaab","aaba","aba","baa"],
+            ['aaa', 'aaab', 'aaba', 'aba', 'baa'],
         ),
     ))
     def test_solution(
