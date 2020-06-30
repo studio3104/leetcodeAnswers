@@ -25,13 +25,12 @@ class Solution:
                     return False
 
                 i += 1
-                m.append(p)
 
                 return True in [
-                    BFS(word, i, (p[0] + 1, p[1]), m),
-                    BFS(word, i, (p[0] - 1, p[1]), m),
-                    BFS(word, i, (p[0], p[1] + 1), m),
-                    BFS(word, i, (p[0], p[1] - 1), m),
+                    BFS(word, i, (p[0] + 1, p[1]), m + [p]),
+                    BFS(word, i, (p[0] - 1, p[1]), m + [p]),
+                    BFS(word, i, (p[0], p[1] + 1), m + [p]),
+                    BFS(word, i, (p[0], p[1] - 1), m + [p]),
                 ]
 
             if len(word) > len(board) * len(board[0]):
