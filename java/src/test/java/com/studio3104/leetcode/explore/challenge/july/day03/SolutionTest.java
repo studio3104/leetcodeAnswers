@@ -24,6 +24,10 @@ class SolutionTest {
                 Arguments.of(
                         new int[]{1, 0, 0, 1, 0, 0, 1, 0}, 1000000000,
                         new int[]{0, 0, 1, 1, 1, 1, 1, 0}
+                ),
+                Arguments.of(
+                        new int[]{0, 0, 0, 1, 1, 0, 1, 0}, 574,
+                        new int[]{0, 0, 0, 1, 1, 0, 1, 0}
                 )
         );
     }
