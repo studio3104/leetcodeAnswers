@@ -1,4 +1,4 @@
-package com.studio3104.leetcode.structures;
+package com.studio3104.leetcode.structure;
 
 public class TreeNode {
     public int val;
@@ -6,7 +6,7 @@ public class TreeNode {
     public TreeNode right;
     TreeNode(int val) { this.val = val; }
 
-    public static TreeNode createTreeNodeFromString(String data) {
+    public static TreeNode createFromString(String data) {
         if (data.equals("[]"))
             return null;
 
