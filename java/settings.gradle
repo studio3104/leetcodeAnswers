@@ -1,0 +1,4 @@
+rootProject.name = 'java'
+include 'src:com'
+findProject(':src:com')?.name = 'com'
+
