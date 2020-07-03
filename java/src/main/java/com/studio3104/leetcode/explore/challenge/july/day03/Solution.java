@@ -1,7 +1,9 @@
 package com.studio3104.leetcode.explore.challenge.july.day03;
 
-import javax.management.relation.RoleUnresolved;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 class Solution {
@@ -22,7 +24,6 @@ class Solution {
                 cycles.put(c, day);
                 continue;
             }
-
 
             int index = N % cycles.size();
             index = index == 0 ? cycles.size() : index;
