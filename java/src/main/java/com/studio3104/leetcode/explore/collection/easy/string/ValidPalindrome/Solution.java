@@ -9,11 +9,13 @@ public class Solution {
         while (i < j) {
             char c1 = s.charAt(i), c2 = s.charAt(j);
 
-            if (!Character.isAlphabetic(c1) && !Character.isDigit(c1)) {
-                i++; continue;
+            if (!Character.isLetterOrDigit(c1)) {
+                i++;
+                continue;
             }
-            if (!Character.isAlphabetic(c2) && !Character.isDigit(c2)) {
-                j--; continue;
+            if (!Character.isLetterOrDigit(c2)) {
+                j--;
+                continue;
             }
             if (Character.toLowerCase(c1) != Character.toLowerCase(c2)) {
                 return false;
@@ -21,6 +23,7 @@ public class Solution {
 
             i++; j--;
         }
+
         return true;
     }
 }
