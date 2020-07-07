@@ -8,9 +8,9 @@ public class Solution2 {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 if (grid[i][j] == 0) continue;
-                if (i - 1 == -1 || grid[i - 1][j] == 0) count++;
+                if (i == 0 || grid[i - 1][j] == 0) count++;
+                if (j == 0 || grid[i][j - 1] == 0) count++;
                 if (i + 1 == x || grid[i + 1][j] == 0) count++;
-                if (j - 1 == -1 || grid[i][j - 1] == 0) count++;
                 if (j + 1 == y || grid[i][j + 1] == 0) count++;
             }
         }
