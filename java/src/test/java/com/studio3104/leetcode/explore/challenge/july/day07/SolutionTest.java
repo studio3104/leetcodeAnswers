@@ -47,4 +47,11 @@ class Solution2Test extends SolutionTest {
         int result = solution.islandPerimeter(grid);
         assertEquals(expected, result);
     }
+
+    @ParameterizedTest
+    @MethodSource("argumentsProvider")
+    void islandPerimeter2(int[][] grid, int expected) {
+        int result = solution.islandPerimeter2(grid);
+        assertEquals(expected, result);
+    }
 }
