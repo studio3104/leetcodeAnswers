@@ -4,15 +4,16 @@ import com.studio3104.leetcode.structure.ListNode;
 
 public class Solution {
     public ListNode reverseList(ListNode head) {
-        if (head == null) return null;
-        ListNode answer = new ListNode(head.val);
+        ListNode previous = null;
         ListNode current = head;
 
-        while (current.next != null) {
-            answer = new ListNode(current.next.val, answer);
-            current = current.next;
+        while (current != null) {
+            ListNode temporary = current.next;
+            current.next = previous;
+            previous = current;
+            current = temporary;
         }
 
-        return answer;
+        return previous;
     }
 }
