@@ -1,9 +1,12 @@
 package com.studio3104.leetcode.structure;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int val) { this.val = val; }
+    public int val;
+    public ListNode next;
+    public ListNode(int val) { this.val = val; }
 
     public static ListNode createFromArray(int[] nums) {
         ListNode current = new ListNode(nums[nums.length - 1]);
