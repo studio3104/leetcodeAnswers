@@ -1,10 +1,14 @@
 package com.studio3104.leetcode.structure;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class TreeNode {
     public int val;
     public TreeNode left;
     public TreeNode right;
-    TreeNode(int val) { this.val = val; }
+
+    public TreeNode(int val) { this.val = val; }
 
     public static TreeNode createFromString(String data) {
         if (data.equals("[]"))
