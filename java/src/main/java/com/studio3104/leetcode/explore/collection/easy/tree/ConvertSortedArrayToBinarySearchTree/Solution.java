@@ -2,17 +2,19 @@ package com.studio3104.leetcode.explore.collection.easy.tree.ConvertSortedArrayT
 
 import com.studio3104.leetcode.structure.TreeNode;
 
-import java.util.Arrays;
-
 public class Solution {
-    public TreeNode sortedArrayToBST(int[] nums) {
-        if (nums.length == 0) return null;
+    TreeNode sortedArrayToBST(int[] nums, int left, int right) {
+        if (left > right) return null;
 
-        int pivotIndex = nums.length / 2;
+        int pivotIndex = (left + right) / 2;
         TreeNode root = new TreeNode(nums[pivotIndex]);
-        root.left = sortedArrayToBST(Arrays.copyOfRange(nums, 0, pivotIndex));
-        root.right = sortedArrayToBST(Arrays.copyOfRange(nums, pivotIndex + 1, nums.length));
+        root.left = sortedArrayToBST(nums, left, pivotIndex - 1);
+        root.right = sortedArrayToBST(nums, pivotIndex + 1, right);
 
         return root;
+    }
+
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return sortedArrayToBST(nums, 0, nums.length - 1);
     }
 }
