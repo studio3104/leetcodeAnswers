@@ -2,8 +2,9 @@ package com.studio3104.leetcode.explore.interview.amazon.ArraysAndStrings.String
 
 public class Solution {
     public int myAtoi(String str) {
-        if (str == null || str.trim().length() == 0) return 0;
+        if (str == null) return 0;
         str = str.trim();
+        if (str.length() == 0) return 0;
 
         long answer = 0;
         boolean isPositive = true;
