@@ -1,13 +1,14 @@
 package com.studio3104.leetcode.explore.challenge.july.day15;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Solution {
     public String reverseWords(String s) {
         s = s.trim();
-        String[] str = s.split("\\s+");
-        StringBuilder result = new StringBuilder(str[str.length - 1]);
-        for (int i = str.length - 2; i >=0; --i) {
-            result.append(" ").append(str[i]);
-        }
-        return result.toString();
+        List<String> str = Arrays.asList(s.split("\\s+"));
+        Collections.reverse(str);
+        return String.join(" ", str);
     }
 }
