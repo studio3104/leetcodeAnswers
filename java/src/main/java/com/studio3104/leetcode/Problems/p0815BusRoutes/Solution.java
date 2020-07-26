@@ -53,7 +53,7 @@ public class Solution {
         }
 
         for (int r: stops.get(current)) {
-            if (!markedRoutes.contains(r)) ++ count;
+            if (!markedRoutes.contains(r)) ++count;
             markedRoutes.add(r);
             if (!hub.containsKey(r)) continue;
             for (int hr: hub.get(r)) {
