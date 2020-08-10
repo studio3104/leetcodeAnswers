@@ -1,5 +1,6 @@
 package com.studio3104.leetcode.explore.challenge.August.day01.DetectCapital;
 
+import com.studio3104.leetcode.explore.challenge.August.day01.Solution;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

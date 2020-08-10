@@ -1,4 +1,4 @@
-package com.studio3104.leetcode.explore.challenge.August.day01.DetectCapital;
+package com.studio3104.leetcode.explore.challenge.August.day01;
 
 public class Solution {
     public boolean detectCapitalUse(String word) {

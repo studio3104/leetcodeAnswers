@@ -1,4 +1,4 @@
-package com.studio3104.leetcode.explore.challenge.August.day01.LoggerRateLimiter;
+package com.studio3104.leetcode.explore.challenge.August.week01;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
