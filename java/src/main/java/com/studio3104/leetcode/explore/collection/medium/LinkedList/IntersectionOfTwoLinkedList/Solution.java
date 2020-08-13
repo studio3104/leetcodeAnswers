@@ -1,4 +1,4 @@
-package com.studio3104.leetcode.explore.challenge.August.day13;
+package com.studio3104.leetcode.explore.collection.medium.LinkedList.IntersectionOfTwoLinkedList;
 
 import com.studio3104.leetcode.structure.ListNode;
 

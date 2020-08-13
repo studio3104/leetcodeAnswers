@@ -1,17 +1,14 @@
-package com.studio3104.leetcode.explore.challenge.August.day13;
+package com.studio3104.leetcode.explore.collection.medium.LinkedList.IntersectionOfTwoLinkedList;
 
 import com.studio3104.leetcode.structure.ListNode;
 import com.studio3104.leetcode.structure.ListNodeConverter;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ConvertWith;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SolutionTest {
     Solution solution = new Solution();
