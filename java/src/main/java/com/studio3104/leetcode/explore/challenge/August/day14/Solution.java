@@ -12,11 +12,12 @@ public class Solution {
 
         int answer = 0;
         boolean containsOdd = false;
+
         for (int count: counter.values()) {
-            if (count % 2 == 0) answer += count;
-            else {
+            answer += count;
+            if (count % 2 != 0) {
                 containsOdd = true;
-                answer += count - 1;
+                answer -= 1;
             }
         }
 
