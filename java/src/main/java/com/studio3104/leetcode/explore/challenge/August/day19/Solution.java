@@ -8,6 +8,7 @@ public class Solution {
     public String toGoatLatin(String S) {
         StringBuilder sb = new StringBuilder();
         String[] sArray = S.split(" ");
+
         for (int i = 0; i < sArray.length; ++i) {
             String s = sArray[i];
             StringBuilder buff = new StringBuilder();
