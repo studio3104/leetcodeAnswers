@@ -13,14 +13,14 @@ public class Solution {
     Set<Integer> daysSet;
 
     // dp(i) = min(dp(i+1) + costs[0], dp(i+7) + costs[1], dp(i+30) + costs[2])
-    int DP(int day) {
+    int dp(int day) {
         if (day > lastDay) return 0;
         if (memo.containsKey(day)) return memo.get(day);
 
-        if (!daysSet.contains(day)) memo.put(day, DP(day + 1));
+        if (!daysSet.contains(day)) memo.put(day, dp(day + 1));
         else {
-            int c = Math.min(DP(day + 1) + costs[0], DP(day + 7) + costs[1]);
-            c = Math.min(c, DP(day + 30) + costs[2]);
+            int c = Math.min(dp(day + 1) + costs[0], dp(day + 7) + costs[1]);
+            c = Math.min(c, dp(day + 30) + costs[2]);
             memo.put(day, c);
         }
 
@@ -31,6 +31,6 @@ public class Solution {
         lastDay = days[days.length - 1];
         this.costs = costs;
         daysSet = Arrays.stream(days).boxed().collect(Collectors.toSet());
-        return DP(1);
+        return dp(1);
     }
 }
