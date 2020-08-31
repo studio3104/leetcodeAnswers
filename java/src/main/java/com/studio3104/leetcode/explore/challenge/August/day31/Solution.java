@@ -3,6 +3,14 @@ package com.studio3104.leetcode.explore.challenge.August.day31;
 import com.studio3104.leetcode.structure.TreeNode;
 
 class Solution {
+    TreeNode copy(TreeNode tree) {
+        if (tree == null) return null;
+        TreeNode copied = new TreeNode(tree.val);
+        copied.right = copy(tree.right);
+        copied.left = copy(tree.left);
+        return copied;
+    }
+
     TreeNode deleteNode(TreeNode toDelete) {
         TreeNode rightMinParent = null;
         TreeNode rightMin = toDelete.right;
@@ -13,9 +21,12 @@ class Solution {
             rightMin = rightMin.left;
         }
         if (rightMinParent != null) rightMinParent.left = rightMin.right;
-        rightMin.left = toDelete.left;
 
-        return rightMin;
+        TreeNode branch = copy(rightMin);
+        if (branch.val != toDelete.right.val) branch.right = toDelete.right;
+        branch.left = toDelete.left;
+
+        return branch;
     }
 
     public TreeNode deleteNode(TreeNode root, int key) {
