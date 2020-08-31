@@ -3,11 +3,11 @@ package com.studio3104.leetcode.explore.challenge.August.day31;
 import com.studio3104.leetcode.structure.TreeNode;
 
 class Solution {
-    TreeNode copy(TreeNode tree) {
+    TreeNode copyNode(TreeNode tree) {
         if (tree == null) return null;
         TreeNode copied = new TreeNode(tree.val);
-        copied.right = copy(tree.right);
-        copied.left = copy(tree.left);
+        copied.right = copyNode(tree.right);
+        copied.left = copyNode(tree.left);
         return copied;
     }
 
@@ -22,7 +22,7 @@ class Solution {
         }
         if (rightMinParent != null) rightMinParent.left = rightMin.right;
 
-        TreeNode branch = copy(rightMin);
+        TreeNode branch = copyNode(rightMin);
         if (branch.val != toDelete.right.val) branch.right = toDelete.right;
         branch.left = toDelete.left;
 
