@@ -9,8 +9,8 @@ public class Solution {
     String S;
     Map<Character, Integer> last;
 
-    int getBorder(char c, int index) {
-        int border = last.get(c);
+    int getBorder(int index) {
+        int border = last.get(S.charAt(index));
         for (int i = index; i <= border; ++i) border = Math.max(border, last.get(S.charAt(i)));
         return ++border;
     }
@@ -18,18 +18,13 @@ public class Solution {
     public List<Integer> partitionLabels(String S) {
         this.S = S;
         last = new HashMap<>();
-
-        for (int i = 0; i < S.length(); ++i) {
-            char c = S.charAt(i);
-            last.put(c, i);
-        }
+        for (int i = S.length() - 1; i >= 0; --i) last.putIfAbsent(S.charAt(i), i);
 
         int index = 0, lastIndex;
         List<Integer> labels = new ArrayList<>();
-
         while (index < S.length()) {
             lastIndex = index;
-            index = getBorder(S.charAt(index), index);
+            index = getBorder(index);
             labels.add(index - lastIndex);
         }
 
