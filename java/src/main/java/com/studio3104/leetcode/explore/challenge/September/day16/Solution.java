@@ -41,18 +41,16 @@ public class Solution {
 
         TrieNode trie = new TrieNode();
         String[] paddedBinaries = new String[nums.length];
-        String paddingFormat = "%" + depth + "s";
+        int bitmask = 1 << depth;
 
         for (int i = 0; i < nums.length; ++i) {
-            String binary = Integer.toBinaryString(nums[i]);
-            String paddedBinary = String.format(paddingFormat, binary).replace(" ", "0");
-            paddedBinaries[i] = paddedBinary;
-            trie.insert(paddedBinary);
+            paddedBinaries[i] = Integer.toBinaryString(bitmask | nums[i]).substring(1);
         }
 
         int maxXOR = Integer.MIN_VALUE;
 
         for (String paddedBinary: paddedBinaries) {
+            trie.insert(paddedBinary);
             int current = findMaximumXOR(trie, paddedBinary, 0, new StringBuilder());
             maxXOR = Math.max(maxXOR, current);
         }
