@@ -6,28 +6,24 @@ public class Solution {
         int[][] directions = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         int direction = 0;
 
-        for (int i = 0; i < 4; ++i) {
-            for (char instruction: instructions.toCharArray()) {
-                if (instruction == 'G') {
-                    position[0] += directions[direction][0];
-                    position[1] += directions[direction][1];
-                    continue;
-                }
-
-                if (instruction == 'R') {
-                    ++direction;
-                    if (direction > 3) direction = 0;
-                }
-
-                if (instruction == 'L') {
-                    --direction;
-                    if (direction < 0) direction = 3;
-                }
+        for (char instruction: instructions.toCharArray()) {
+            if (instruction == 'G') {
+                position[0] += directions[direction][0];
+                position[1] += directions[direction][1];
+                continue;
             }
 
-            if (position[0] == 0 && position[1] == 0) return true;
+            if (instruction == 'R') {
+                ++direction;
+                if (direction > 3) direction = 0;
+            }
+
+            if (instruction == 'L') {
+                --direction;
+                if (direction < 0) direction = 3;
+            }
         }
 
-        return false;
+        return (position[0] == 0 && position[1] == 0) || direction != 0;
     }
 }
