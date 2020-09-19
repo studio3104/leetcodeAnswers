@@ -12,8 +12,8 @@ public class Solution {
 
         for (int digits = lowLog10; digits <= highLog10; ++digits) {
             for (int i = 1; i <= 9 - digits; ++i) {
-                int d = digits, c = 0, first = i;
-                while (d >= 0) c += first++ * Math.pow(10, d--);
+                int d = digits, c = 0, num = i;
+                while (d >= 0) c += num++ * Math.pow(10, d--);
                 if (c >= low && c <= high) answer.add(c);
             }
         }
