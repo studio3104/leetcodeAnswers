@@ -2,14 +2,11 @@ package com.studio3104.leetcode.explore.challenge.September.day24;
 
 public class Solution {
     public char findTheDifference(String s, String t) {
-        int diff = 0;
+        char diff = 0;
 
-        for (int i = 0; i < s.length(); ++i) {
-            diff ^= s.charAt(i);
-            diff ^= t.charAt(i);
-        }
-        diff ^= t.charAt(t.length() - 1);
+        for (char c: s.toCharArray()) diff ^= c;
+        for (char c: t.toCharArray()) diff ^= c;
 
-        return (char) diff;
+        return diff;
     }
 }
