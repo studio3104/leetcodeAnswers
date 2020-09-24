@@ -5,10 +5,10 @@ public class Solution {
         int diff = 0;
 
         for (int i = 0; i < s.length(); ++i) {
-            diff -= s.charAt(i);
-            diff += t.charAt(i);
+            diff ^= s.charAt(i);
+            diff ^= t.charAt(i);
         }
-        diff += t.charAt(t.length() - 1);
+        diff ^= t.charAt(t.length() - 1);
 
         return (char) diff;
     }
