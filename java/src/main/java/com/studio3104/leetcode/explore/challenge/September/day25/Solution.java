@@ -17,13 +17,12 @@ public class Solution {
             if (i == pIndex) continue;
 
             String num = nums.get(i);
-            char pC0 = pivot.charAt(0), nC0 = num.charAt(0);
             int pLen = pivot.length(), nLen = num.length();
             boolean added = false;
 
             for (int j = 0; j < Math.max(pLen, nLen); ++j) {
-                char pC = j >= pLen ? pC0 : pivot.charAt(j);
-                char nC = j >= nLen ? nC0 : num.charAt(j);
+                char pC = j >= pLen ? pivot.charAt(0) : pivot.charAt(j);
+                char nC = j >= nLen ? num.charAt(0) : num.charAt(j);
 
                 if (pC == nC) continue;
                 if (pC > nC) smaller.add(num);
