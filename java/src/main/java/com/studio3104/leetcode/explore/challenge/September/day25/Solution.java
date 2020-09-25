@@ -17,24 +17,7 @@ public class Solution {
             if (i == pIndex) continue;
 
             String num = nums.get(i);
-            int pLen = pivot.length(), nLen = num.length();
-            boolean added = false;
-
-            for (int j = 0; j < Math.max(pLen, nLen); ++j) {
-                char pC = j >= pLen ? pivot.charAt(0) : pivot.charAt(j);
-                char nC = j >= nLen ? num.charAt(0) : num.charAt(j);
-
-                if (pC == nC) continue;
-                if (pC > nC) smaller.add(num);
-                else larger.add(num);
-
-                added = true;
-                break;
-            }
-
-            if (added) continue;
-
-            if (pivot.charAt(pLen - 1) > num.charAt(nLen - 1)) smaller.add(num);
+            if ((pivot + num).compareTo(num + pivot) > 0) smaller.add(num);
             else larger.add(num);
         }
 
