@@ -20,11 +20,11 @@ public class Solution {
             if (i == topSubarray) continue;
 
             do {
-                if (product >= k) product /= nums[topSubarray++];
-                else {
+                if (product < k) {
                     numSubarray += i - topSubarray;
                     break;
                 }
+                product /= nums[topSubarray++];
             } while (topSubarray <= i);
         }
 
