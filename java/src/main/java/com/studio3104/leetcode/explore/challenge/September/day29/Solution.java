@@ -21,8 +21,13 @@ class Trie {
 public class Solution {
     String string;
     Trie rootTrie;
+    Map<Integer, Map<Integer, Boolean>> memo;
 
     private boolean canBeSegmented(int p, Trie trie) {
+        if (memo.containsKey(p) && memo.get(p).containsKey(trie.hashCode())) return memo.get(p).get(trie.hashCode());
+        memo.putIfAbsent(p, new HashMap<>());
+        memo.get(p).putIfAbsent(trie.hashCode(), false);
+
         if (p >= string.length()) return false;
 
         char c = string.charAt(p);
@@ -40,6 +45,8 @@ public class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         string = s;
         rootTrie = new Trie();
+        memo = new HashMap<>();
+
         for (String word: wordDict) rootTrie.insert(word);
         return canBeSegmented(0, rootTrie);
     }
