@@ -9,20 +9,19 @@ public class Solution {
     TreeSet<Integer> candidateSet;
     List<List<Integer>> combinations;
 
-    private void backtrack(int remaining, List<Integer> combination) {
+    private void backtrack(int remaining, int lastItem, List<Integer> combination) {
         if (remaining == 0) {
-            combinations.add(new ArrayList<>(combination));
+            combinations.add(combination);
             return;
         }
 
-        int lastItem = combination.get(combination.size() - 1);
         if (remaining < 0 || remaining < lastItem) return;
 
         for (int c: candidateSet) {
             if (c < lastItem) continue;
             List<Integer> newCombination = new ArrayList<>(combination);
             newCombination.add(c);
-            backtrack(remaining - c, newCombination);
+            backtrack(remaining - c, c, newCombination);
         }
     }
 
@@ -30,14 +29,9 @@ public class Solution {
         this.target = target;
         candidateSet = new TreeSet<>();
         for (int c: candidates) candidateSet.add(c);
-        combinations = new ArrayList<>();
 
-        for (int c: candidateSet) {
-            int remaining = target - c;
-            if (remaining < 0) continue;
-            if (remaining == 0) combinations.add(List.of(c));
-            else backtrack(remaining, new ArrayList<>(List.of(c)));
-        }
+        combinations = new ArrayList<>();
+        backtrack(target, Integer.MIN_VALUE, new ArrayList<>());
 
         return combinations;
     }
