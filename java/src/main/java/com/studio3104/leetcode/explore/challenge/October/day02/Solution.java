@@ -7,32 +7,31 @@ import java.util.List;
 
 public class Solution {
     int target;
-    int[] candidate;
+    int[] candidates;
     List<List<Integer>> combinations;
 
-    private void backtrack(int remaining, Deque<Integer> combination) {
+    private void backtrack(int remaining, int processedIndex, Deque<Integer> combination) {
         if (remaining == 0) {
             combinations.add(new ArrayList<>(combination));
             return;
         }
 
-        int lastItem = combination.size() > 0 ? combination.getLast() : Integer.MIN_VALUE;
-        if (remaining < 0 || remaining < lastItem) return;
+        if (remaining < 0) return;
 
-        for (int c: candidate) {
-            if (c < lastItem) continue;
+        for (int i = processedIndex; i < candidates.length; ++i) {
+            int c = candidates[i];
             combination.addLast(c);
-            backtrack(remaining - c, combination);
+            backtrack(remaining - c, i, combination);
             combination.pollLast();
         }
     }
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        this.candidate = candidates;
+        this.candidates = candidates;
         this.target = target;
 
         combinations = new ArrayList<>();
-        backtrack(target, new ArrayDeque<>());
+        backtrack(target, 0, new ArrayDeque<>());
 
         return combinations;
     }
