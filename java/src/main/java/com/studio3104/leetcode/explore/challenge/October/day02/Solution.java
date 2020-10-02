@@ -2,11 +2,10 @@ package com.studio3104.leetcode.explore.challenge.October.day02;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 public class Solution {
     int target;
-    TreeSet<Integer> candidateSet;
+    int[] candidate;
     List<List<Integer>> combinations;
 
     private void backtrack(int remaining, int lastItem, List<Integer> combination) {
@@ -17,7 +16,7 @@ public class Solution {
 
         if (remaining < 0 || remaining < lastItem) return;
 
-        for (int c: candidateSet) {
+        for (int c: candidate) {
             if (c < lastItem) continue;
             List<Integer> newCombination = new ArrayList<>(combination);
             newCombination.add(c);
@@ -26,9 +25,8 @@ public class Solution {
     }
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        this.candidate = candidates;
         this.target = target;
-        candidateSet = new TreeSet<>();
-        for (int c: candidates) candidateSet.add(c);
 
         combinations = new ArrayList<>();
         backtrack(target, Integer.MIN_VALUE, new ArrayList<>());
