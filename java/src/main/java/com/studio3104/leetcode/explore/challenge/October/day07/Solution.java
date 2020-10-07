@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if (k == 0) return head;
+        if (head == null || head.next == null || k == 0) return head;
 
         List<ListNode> nodes = new ArrayList<>();
         ListNode current = head;
@@ -18,7 +18,7 @@ public class Solution {
         }
 
         int length = nodes.size();
-        if (length <= 1 || k % length == 0) return head;
+        if (k % length == 0) return head;
 
         int endIndex = length - 1 - k % length;
         nodes.get(endIndex).next = null;
