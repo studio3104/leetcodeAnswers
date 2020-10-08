@@ -2,28 +2,25 @@ package com.studio3104.leetcode.explore.challenge.October.day07;
 
 import com.studio3104.leetcode.structure.ListNode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
         if (head == null || head.next == null || k == 0) return head;
 
-        List<ListNode> nodes = new ArrayList<>();
-        ListNode current = head;
+        int length = 0;
+        ListNode currentEnd = head;
 
-        while (current != null) {
-            nodes.add(current);
-            current = current.next;
+        while (currentEnd.next != null) {
+            ++length;
+            currentEnd = currentEnd.next;
         }
+        ++length;
+        currentEnd.next = head;
 
-        int length = nodes.size();
-        if (k % length == 0) return head;
+        ListNode newEnd = head;
+        for (int i = 0; i < length - 1 - k % length; ++i) newEnd = newEnd.next;
+        ListNode newHead = newEnd.next;
+        newEnd.next = null;
 
-        int endIndex = length - 1 - k % length;
-        nodes.get(endIndex).next = null;
-        nodes.get(length - 1).next = head;
-
-        return nodes.get(endIndex + 1);
+        return newHead;
     }
 }
