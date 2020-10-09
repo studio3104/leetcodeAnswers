@@ -2,65 +2,65 @@ package com.studio3104.leetcode.explore.challenge.October.day09;
 
 import com.studio3104.leetcode.structure.TreeNode;
 
+import java.util.LinkedList;
+
 public class Codec {
-    private int checkDepth(TreeNode tree) {
-        if (tree == null) return 0;
-        return Math.max(checkDepth(tree.left), checkDepth(tree.right)) + 1;
-    }
-
-    private void BFS(TreeNode tree, int level, StringBuilder sb) {
-        if (tree == null) {
-            sb.append("null,");
-            return;
-        }
-        if (level == 1) {
-            sb.append(tree.val).append(',');
-            return;
-        }
-
-        BFS(tree.left, level - 1, sb);
-        BFS(tree.right, level - 1, sb);
-    }
-
     public String serialize(TreeNode root) {
-        if (root == null) return "[]";
+        if (root == null) return "";
 
-        StringBuilder serialized = new StringBuilder();
-        serialized.append('[');
+        StringBuilder sb = new StringBuilder();
+        LinkedList<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.add(root);
 
-        int depth = checkDepth(root);
-        for (int i = 1; i <= depth; ++i) BFS(root, i, serialized);
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.pollFirst();
 
-        serialized.append(']');
-        return serialized.toString();
+            if (node == null) {
+                sb.append("null,");
+                continue;
+            }
+
+            sb.append(node.val).append(',');
+            nodeQueue.add(node.left);
+            nodeQueue.add(node.right);
+        }
+
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 
     public TreeNode deserialize(String data) {
-        if (data.equals("[]")) return null;
+        if (data.length() == 0) return null;
 
-        data = data.substring(1, data.length() - 1);
-        String[] split = data.split(",");
+        String[] parts = data.split(",");
+        String item = parts[0];
+        TreeNode root = new TreeNode(Integer.parseInt(item));
+        LinkedList<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.add(root);
 
-        int len = split.length;
-        TreeNode[] treeNodes = new TreeNode[len];
+        int index = 1;
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.pollFirst();
 
-        for (int i = 0; i < len; i++) {
-            if (!split[i].equals("null"))
-                treeNodes[i] = new TreeNode(Integer.parseInt(split[i]));
-        }
+            if (index == parts.length) break;
 
-        for (int i = 0; i < len; i++) {
-            if (treeNodes[i] != null) {
-                int leftIndex = i * 2 + 1;
-                if (leftIndex < len)
-                    treeNodes[i].left = treeNodes[leftIndex];
+            item = parts[index++];
+            if (!item.equals("null")) {
+                int leftNumber = Integer.parseInt(item);
+                node.left = new TreeNode(leftNumber);
+                nodeQueue.add(node.left);
+            }
 
-                int rightIndex = leftIndex + 1;
-                if (rightIndex < len)
-                    treeNodes[i].right = treeNodes[rightIndex];
+            if (index == parts.length) break;
+
+            item = parts[index++];
+            if (!item.equals("null")) {
+                int rightNumber = Integer.parseInt(item);
+                node.right = new TreeNode(rightNumber);
+                nodeQueue.add(node.right);
             }
         }
 
-        return treeNodes[0];
+        return root;
     }
 }
