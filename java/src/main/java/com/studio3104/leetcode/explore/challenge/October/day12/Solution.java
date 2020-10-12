@@ -1,20 +1,20 @@
 package com.studio3104.leetcode.explore.challenge.October.day12;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class Solution {
     public boolean buddyStrings(String A, String B) {
         if (A.length() != B.length()) return false;
 
         if (A.equals(B)) {
-            Map<Character, Integer> counter = new HashMap<>();
+            Set<Character> seen = new HashSet<>();
             for (int i = 0; i < A.length(); ++i) {
                 char c = A.charAt(i);
-                counter.put(c, counter.getOrDefault(c, 0) + 1);
-                if (counter.get(c) > 1) return true;
+                if (seen.contains(c)) return true;
+                seen.add(c);
             }
             return false;
         }
