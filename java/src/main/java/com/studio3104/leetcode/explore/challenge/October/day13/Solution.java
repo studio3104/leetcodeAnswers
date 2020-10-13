@@ -6,8 +6,19 @@ class Solution {
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null) return head;
 
+        boolean sorted = true;
+        ListNode current = head;
+        while (current.next != null) {
+            if (current.val > current.next.val) {
+                sorted = false;
+                break;
+            }
+            current = current.next;
+        }
+        if (sorted) return head;
+
         int pivot = head.val;
-        ListNode current = head.next;
+        current = head.next;
         ListNode lower = null, greater = null;
         ListNode lowerTail = null, greaterTail = null;
 
