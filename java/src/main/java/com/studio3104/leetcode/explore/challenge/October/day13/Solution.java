@@ -6,23 +6,15 @@ class Solution {
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null) return head;
 
-        boolean sorted = true;
-        ListNode current = head;
-        while (current.next != null) {
-            if (current.val > current.next.val) {
-                sorted = false;
-                break;
-            }
-            current = current.next;
-        }
-        if (sorted) return head;
-
         int pivot = head.val;
-        current = head.next;
+        ListNode current = head.next;
+        boolean isSorted = pivot <= current.val;
         ListNode lower = null, greater = null;
         ListNode lowerTail = null, greaterTail = null;
 
         while (current != null) {
+            if (current.next != null && current.val > current.next.val) isSorted = false;
+
             if (pivot > current.val) {
                 if (lower == null) {
                     lower = current;
@@ -42,6 +34,8 @@ class Solution {
             }
             current = current.next;
         }
+
+        if (isSorted) return head;
 
         if (lowerTail != null) lowerTail.next = null;
         if (greaterTail != null) greaterTail.next = null;
