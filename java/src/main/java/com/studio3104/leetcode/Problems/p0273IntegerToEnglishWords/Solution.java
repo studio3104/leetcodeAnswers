@@ -22,8 +22,7 @@ public class Solution {
         num %= 100;
         if (num <= 19) result.add(stringNumsU19[num]);
         else {
-            int ten = num / 10;
-            result.add(stringNumsU99[ten]);
+            result.add(stringNumsU99[num / 10]);
             result.add(stringNumsU19[num % 10]);
         }
         result.add(ranks[rankIndex]);
