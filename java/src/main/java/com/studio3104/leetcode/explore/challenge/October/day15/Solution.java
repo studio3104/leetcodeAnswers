@@ -24,7 +24,7 @@ public class Solution {
 
     public void rotate(int[] nums, int k) {
         int length = nums.length;
-        if (k == 0 || length <= 1 || length == k) return;
+        if (k == 0 || length <= 1 || k % length == 0) return;
 
         int lowestIndex = rotate(nums, k, 0);
         for (int start = 1; start < lowestIndex; ++start) rotate(nums, k, start);
