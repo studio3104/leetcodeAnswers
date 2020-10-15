@@ -28,9 +28,6 @@ public class Solution {
         if (k == 0 || length <= 1 || length == k) return;
 
         int lowestIndex = rotate(nums, k, 0);
-
-        if (lowestIndex != 1) {
-            for (int start = 1; start < lowestIndex; ++start) rotate(nums, k, start);
-        }
+        for (int start = 1; start < lowestIndex; ++start) rotate(nums, k, start);
     }
 }
