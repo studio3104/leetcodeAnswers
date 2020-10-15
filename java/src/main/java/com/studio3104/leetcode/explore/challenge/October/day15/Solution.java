@@ -3,8 +3,7 @@ package com.studio3104.leetcode.explore.challenge.October.day15;
 public class Solution {
     private int rotate(int[] nums, int k, int start) {
         int temporary = nums[start];
-        int next = k + start;
-        if (next >= nums.length) next -= nums.length;
+        int next = (k + start) % nums.length;
         int lowestIndex = next;
 
         while (next != start) {
@@ -15,7 +14,7 @@ public class Solution {
             temporary = t;
 
             next += k;
-            while (next >= nums.length) next -= nums.length;
+            next %= nums.length;
         }
 
         nums[start] = temporary;
