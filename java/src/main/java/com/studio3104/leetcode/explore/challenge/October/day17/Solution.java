@@ -13,7 +13,7 @@ An approach I could come up by myself was described "Easy stupid” on the solut
 Here's just a transcription from the one of the efficient ways.
  */
 public class Solution {
-    Map<Character, Integer> map = new HashMap<>() {{
+    private final Map<Character, Integer> MAPPING = new HashMap<>() {{
         put('A', 0);
         put('C', 1);
         put('G', 2);
@@ -28,7 +28,7 @@ public class Solution {
 
         int[] nums = IntStream
                 .range(0, length)
-                .map(i -> map.get(s.charAt(i)))
+                .map(i -> MAPPING.get(s.charAt(i)))
                 .toArray();
 
         int h = IntStream
