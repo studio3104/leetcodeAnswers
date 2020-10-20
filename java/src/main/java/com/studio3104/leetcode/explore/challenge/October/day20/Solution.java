@@ -40,7 +40,7 @@ public class Solution {
         clone.neighbors = node.neighbors
                 .stream()
                 .map(this::cloneGraph)
-                .collect(Collectors.toCollection(ArrayList::new));
+                .collect(Collectors.toList());
 
         return clone;
     }
