@@ -5,9 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Solution {
-    Map<Integer, Node> m = new HashMap<>();
-
-    public Node cloneGraph(Node node) {
+    private Node cloneGraph(Node node, Map<Integer, Node> m) {
         if (node == null) return null;
 
         if (m.containsKey(node.val)) return m.get(node.val);
@@ -17,9 +15,13 @@ public class Solution {
 
         clone.neighbors = node.neighbors
                 .stream()
-                .map(this::cloneGraph)
+                .map(n -> cloneGraph(n, m))
                 .collect(Collectors.toList());
 
         return clone;
+    }
+
+    public Node cloneGraph(Node node) {
+        return cloneGraph(node, new HashMap<>());
     }
 }
