@@ -1,18 +1,15 @@
 package com.studio3104.leetcode.Problems.p1480RunningSumOf1dArray;
 
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Solution {
     public int[] runningSum(int[] nums) {
-        AtomicInteger sum = new AtomicInteger();
+        int[] answer = new int[nums.length];
+        int sum = 0;
 
-        return Arrays.stream(nums)
-                .sequential()
-                .map((n) -> {
-                    sum.getAndAdd(n);
-                    return sum.get();
-                })
-                .toArray();
+        for (int i = 0; i < nums.length; ++i) {
+            sum += nums[i];
+            answer[i] = sum;
+        }
+
+        return answer;
     }
 }
