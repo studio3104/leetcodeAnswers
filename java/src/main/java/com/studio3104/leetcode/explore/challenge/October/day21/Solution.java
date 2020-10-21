@@ -13,18 +13,10 @@ public class Solution {
                 continue;
             }
 
-            boolean isDisappeared = false;
+            while (!q.isEmpty() && q.peekLast() > 0 && q.peekLast() < Math.abs(asteroid)) q.pollLast();
 
-            while (!q.isEmpty() && q.peekLast() > 0) {
-                int qa = q.pollLast();
-                if (qa > Math.abs(asteroid)) q.add(qa);
-                if (qa >= Math.abs(asteroid)) {
-                    isDisappeared = true;
-                    break;
-                }
-            }
-
-            if (!isDisappeared) q.add(asteroid);
+            if (q.isEmpty() || q.peekLast() < 0) q.add(asteroid);
+            else if (q.peekLast() == Math.abs(asteroid)) q.pollLast();
         }
 
         return q.stream().mapToInt(n -> n).toArray();
