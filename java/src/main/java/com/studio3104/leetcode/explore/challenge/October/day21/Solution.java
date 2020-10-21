@@ -13,10 +13,15 @@ public class Solution {
                 continue;
             }
 
-            while (!q.isEmpty() && q.peekLast() > 0 && q.peekLast() < Math.abs(asteroid)) q.pollLast();
+            while (!q.isEmpty() && q.peekLast() > 0 && q.peekLast() < Math.abs(asteroid)) {
+                q.pollLast();
+            }
 
-            if (q.isEmpty() || q.peekLast() < 0) q.add(asteroid);
-            else if (q.peekLast() == Math.abs(asteroid)) q.pollLast();
+            if (q.isEmpty() || q.peekLast() < 0) {
+                q.add(asteroid);
+            } else if (q.peekLast() == Math.abs(asteroid)) {
+                q.pollLast();
+            }
         }
 
         return q.stream().mapToInt(n -> n).toArray();
