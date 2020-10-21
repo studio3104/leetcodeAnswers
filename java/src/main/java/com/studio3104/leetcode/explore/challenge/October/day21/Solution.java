@@ -15,7 +15,7 @@ public class Solution {
 
             boolean isDisappeared = false;
 
-            while (q.peekLast() != null && q.peekLast() > 0) {
+            while (!q.isEmpty() && q.peekLast() > 0) {
                 int qa = q.pollLast();
                 if (qa > Math.abs(asteroid)) q.add(qa);
                 if (qa > Math.abs(asteroid) || qa == Math.abs(asteroid)) {
