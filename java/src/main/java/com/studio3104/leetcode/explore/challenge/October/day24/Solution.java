@@ -4,29 +4,23 @@ import java.util.Arrays;
 
 public class Solution {
     public int bagOfTokensScore(int[] tokens, int P) {
-        if (tokens.length == 1) {
-            return tokens[0] <= P ? 1 : 0;
-        }
-
         Arrays.sort(tokens);
 
-        int score = 0, maxScore = score;
+        int currentScore = 0, maxScore = currentScore;
         int head = 0, tail = tokens.length - 1;
 
         while (head <= tail) {
-            if (tokens[head] > P) {
-                if (score > 0) {
-                    --score;
-                    P += tokens[tail--];
-                } else {
-                    break;
-                }
-            } else {
-                ++score;
+            if (tokens[head] <= P) {
+                ++currentScore;
                 P -= tokens[head++];
+                maxScore = Math.max(maxScore, currentScore);
+                continue;
             }
 
-            maxScore = Math.max(maxScore, score);
+            if (currentScore <= 0) break;
+
+            --currentScore;
+            P += tokens[tail--];
         }
 
         return maxScore;
