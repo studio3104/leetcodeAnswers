@@ -6,23 +6,22 @@ public class Solution {
     public int bagOfTokensScore(int[] tokens, int P) {
         Arrays.sort(tokens);
 
-        int currentScore = 0, maxScore = currentScore;
+        int score = 0;
         int head = 0, tail = tokens.length - 1;
 
         while (head <= tail) {
             if (tokens[head] <= P) {
-                ++currentScore;
+                ++score;
                 P -= tokens[head++];
-                maxScore = Math.max(maxScore, currentScore);
                 continue;
             }
 
-            if (currentScore == 0) break;
+            if (score == 0 || head == tail) break;
 
-            --currentScore;
+            --score;
             P += tokens[tail--];
         }
 
-        return maxScore;
+        return score;
     }
 }
