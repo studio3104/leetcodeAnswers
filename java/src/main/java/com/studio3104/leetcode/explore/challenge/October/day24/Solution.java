@@ -17,7 +17,7 @@ public class Solution {
                 continue;
             }
 
-            if (currentScore <= 0) break;
+            if (currentScore == 0) break;
 
             --currentScore;
             P += tokens[tail--];
