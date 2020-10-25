@@ -19,26 +19,21 @@ class Solution {
         put(2, false);
     }};
 
-    private boolean winnerSquareGame(int n, boolean isMyTurn) {
-        if (memo.containsKey(n)) return isMyTurn == memo.get(n);
-        if (n % 3 == 0) return isMyTurn;
+    public boolean winnerSquareGame(int n) {
+        if (memo.containsKey(n)) memo.get(n);
 
         boolean result = false;
 
         for (int square : SQUARES) {
             if (n < square) break;
 
-            if (winnerSquareGame(n - square, !isMyTurn)) {
+            if (!winnerSquareGame(n - square)) {
                 result = true;
                 break;
             }
         }
 
         memo.put(n, result);
-        return memo.get(n);
-    }
-
-    public boolean winnerSquareGame(int n) {
-        return winnerSquareGame(n, true);
+        return result;
     }
 }
