@@ -20,7 +20,7 @@ class Solution {
     }};
 
     public boolean winnerSquareGame(int n) {
-        if (memo.containsKey(n)) memo.get(n);
+        if (memo.containsKey(n)) return memo.get(n);
 
         boolean result = false;
 
