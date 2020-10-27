@@ -12,14 +12,10 @@ public class Solution {
         ListNode fast = head.next.next;
 
         while (slow != fast) {
-            if (slow.next == null) {
-                return null;
-            }
-            slow = slow.next;
-
             if (fast.next == null || fast.next.next == null) {
                 return null;
             }
+            slow = slow.next;
             fast = fast.next.next;
         }
 
