@@ -1,7 +1,5 @@
 package com.studio3104.leetcode.explore.challenge.October.day29;
 
-import java.util.Arrays;
-
 class Solution {
     public int maxDistToClosest(int[] seats) {
         int[] distance = new int[seats.length];
@@ -21,6 +19,7 @@ class Solution {
 
         currentDistance = 0;
         someoneAppeared = false;
+        int maxDistance = 0;
 
         for (int i = seats.length - 1; i >= 0; --i) {
             if (seats[i] == 0 && someoneAppeared) {
@@ -31,8 +30,9 @@ class Solution {
                 currentDistance = 0;
                 someoneAppeared = true;
             }
+            maxDistance = Math.max(maxDistance, distance[i]);
         }
 
-        return Arrays.stream(distance).max().orElse(0);
+        return maxDistance;
     }
 }
