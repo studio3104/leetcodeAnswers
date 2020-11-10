@@ -8,10 +8,8 @@ class Solution {
 
             while (head <= tail) {
                 int temp = A[i][head];
-                A[i][head] = A[i][tail] ^ 1;
-                A[i][tail] = temp ^ 1;
-                ++head;
-                --tail;
+                A[i][head++] = A[i][tail] ^ 1;
+                A[i][tail--] = temp ^ 1;
             }
         }
 
