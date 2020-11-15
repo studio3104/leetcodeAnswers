@@ -7,11 +7,12 @@ class Solution {
         if (root == null) {
             return 0;
         }
-
-        int sum = rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
-        if (root.val >= low && root.val <= high) {
-            sum += root.val;
+        if (root.val > high) {
+            return rangeSumBST(root.left, low, high);
         }
-        return sum;
+        if (root.val < low) {
+            return rangeSumBST(root.right, low, high);
+        }
+        return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
     }
 }
