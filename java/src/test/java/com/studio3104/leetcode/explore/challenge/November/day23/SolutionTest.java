@@ -16,7 +16,9 @@ class SolutionTest {
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
                 Arguments.of("[3,2,3,null,3,null,1]", 7),
-                Arguments.of("[3,4,5,1,3,null,1]", 9)
+                Arguments.of("[3,4,5,1,3,null,1]", 9),
+                Arguments.of("[2,1,3,null,4]", 7),
+                Arguments.of("[5,3,6,1,4,null,null,null,2]", 12)
         );
     }
 
