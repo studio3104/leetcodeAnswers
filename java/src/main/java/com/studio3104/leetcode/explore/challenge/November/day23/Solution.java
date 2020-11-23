@@ -4,8 +4,8 @@ import com.studio3104.leetcode.structure.TreeNode;
 
 class Solution {
     private int rob(TreeNode tree, int skipCount, TreeNode cache) {
-        if (tree == null || skipCount < 0) return 0;
-
+        if (tree == null) return 0;
+        if (skipCount < 0) skipCount += 2;
         if (cache == null) cache = new TreeNode(0);
 
         int left;
