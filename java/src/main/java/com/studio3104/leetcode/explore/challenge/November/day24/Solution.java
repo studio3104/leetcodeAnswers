@@ -3,6 +3,24 @@ package com.studio3104.leetcode.explore.challenge.November.day24;
 import java.util.LinkedList;
 
 class Solution {
+    private void calculate(char operator, LinkedList<Integer> numbers, int num) {
+        if (operator == '+') {
+            numbers.add(num);
+        }
+
+        if (operator == '-') {
+            numbers.add(num * -1);
+        }
+
+        if (operator == '*' && !numbers.isEmpty()) {
+            numbers.add(numbers.pollLast() * num);
+        }
+
+        if (operator == '/' && !numbers.isEmpty()) {
+            numbers.add(numbers.pollLast() / num);
+        }
+    }
+
     public int calculate(String s) {
         LinkedList<Integer> numbers = new LinkedList<>();
 
@@ -17,44 +35,12 @@ class Solution {
                 continue;
             }
 
-            if (operator == '+') {
-                numbers.add(num);
-            }
-
-            if (operator == '-') {
-                numbers.add(num * -1);
-            }
-
-            if (operator == '*' && !numbers.isEmpty()) {
-                numbers.add(numbers.pollLast() * num);
-            }
-
-            if (operator == '/' && !numbers.isEmpty()) {
-                numbers.add(numbers.pollLast() / num);
-            }
-
+            calculate(operator, numbers, num);
             num = 0;
             operator = c;
         }
 
-        int n = numbers.isEmpty() ? 0 : numbers.pollLast();
-        switch (operator) {
-            case '+':
-                n += num;
-                break;
-            case '-':
-                n -= num;
-                break;
-            case '*':
-                n *= num;
-                break;
-            case '/':
-                n /= num;
-                break;
-        }
-        numbers.add(n);
-
-
+        calculate(operator, numbers, num);
         return numbers.stream().mapToInt(i -> i).sum();
     }
 }
