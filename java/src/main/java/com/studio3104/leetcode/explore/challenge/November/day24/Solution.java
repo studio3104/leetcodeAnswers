@@ -25,22 +25,22 @@ class Solution {
         LinkedList<Integer> numbers = new LinkedList<>();
 
         char operator = '+';
-        int num = 0;
+        int currentNumber = 0;
 
         for (char c : s.toCharArray()) {
-            if (c == ' ') continue;
+            if (Character.isSpaceChar(c)) continue;
 
-            if (c != '+' && c != '-' && c != '*' && c != '/') {
-                num = num * 10 + Character.getNumericValue(c);
+            if (Character.isDigit(c)) {
+                currentNumber = currentNumber * 10 + Character.getNumericValue(c);
                 continue;
             }
 
-            calculate(operator, numbers, num);
-            num = 0;
+            calculate(operator, numbers, currentNumber);
+            currentNumber = 0;
             operator = c;
         }
 
-        calculate(operator, numbers, num);
+        calculate(operator, numbers, currentNumber);
         return numbers.stream().mapToInt(i -> i).sum();
     }
 }
