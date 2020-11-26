@@ -10,7 +10,7 @@ class Solution {
     private int longestSubstring(String s, int k, int head, int tail, int longest) {
         int width = tail - head + 1;
 
-        if (width <= 0 ||  width < k || width < longest) {
+        if (width <= 0 || width < k || width < longest) {
             return longest;
         }
 
