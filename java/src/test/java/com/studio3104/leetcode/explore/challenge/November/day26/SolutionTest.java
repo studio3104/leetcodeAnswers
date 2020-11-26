@@ -11,6 +11,7 @@ class SolutionTest {
     @CsvSource({
             "aaabb, 3, 3",
             "ababbc, 2, 5",
+            "bbaaacbd, 3, 3",
     })
     void longestSubstring(String s, int k, int expected) {
         int actual = solution.longestSubstring(s, k);

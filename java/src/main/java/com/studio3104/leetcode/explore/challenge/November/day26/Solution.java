@@ -34,8 +34,9 @@ class Solution {
         }
 
         Collections.sort(indexesLessThanK);
+        indexesLessThanK.add(tail + 1);
         for (int index : indexesLessThanK) {
-            longest = longestSubstring(s, k, head, index - 1, longest);
+            longest = Math.max(longest, longestSubstring(s, k, head, index - 1, longest));
             head = index + 1;
         }
 
