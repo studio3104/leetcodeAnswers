@@ -14,7 +14,8 @@ class SolutionTest {
         return Stream.of(
                 Arguments.of(new int[]{1, 5, 11, 5}, true),
                 Arguments.of(new int[]{1, 2, 3, 5}, false),
-                Arguments.of(new int[]{1, 5, 3}, false)
+                Arguments.of(new int[]{1, 5, 3}, false),
+                Arguments.of(new int[]{1, 1, 2, 2}, true)
         );
     }
 

@@ -4,23 +4,20 @@ import java.util.Arrays;
 
 class Solution {
     public boolean canPartition(int[] nums) {
-        if (nums.length <= 1) {
-            return false;
-        }
+        int total = Arrays.stream(nums).sum();
+        if (total % 2 != 0) return false;
 
-        Arrays.sort(nums);
+        int half = total / 2;
+        boolean[][] dp = new boolean[nums.length + 1][half + 1];
+        dp[0][0] = true;
 
-        int head = 0, tail = nums.length - 1;
-        int sumA = nums[head++], sumB = nums[tail--];
-
-        while (head <= tail) {
-            if (sumA < sumB) {
-                sumA += nums[head++];
-            } else {
-                sumB += nums[tail--];
+        for (int i = 1; i <= nums.length; ++i) {
+            int current = nums[i - 1];
+            for (int j = 0; j <= half; ++j) {
+                dp[i][j] = j < current ? dp[i - 1][j] : dp[i - 1][j] || (dp[i - 1][j - current]);
             }
         }
 
-        return sumA == sumB;
+        return dp[nums.length][half];
     }
 }
