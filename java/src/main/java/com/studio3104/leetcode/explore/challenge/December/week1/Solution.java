@@ -9,8 +9,6 @@ class Solution {
         for (int i = 0; i < words.length; ++i) {
             String s = words[i];
 
-            if (!s.equals(word1) && !s.equals(word2)) continue;
-
             if (s.equals(word1)) word1Index = i;
             if (s.equals(word2)) word2Index = i;
 
