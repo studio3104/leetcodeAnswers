@@ -20,6 +20,5 @@ class SparseVector {
         return nonZeroes.keySet().stream()
                 .filter(vec.nonZeroes::containsKey)
                 .reduce(0, (n, i) -> n + nonZeroes.get(i) * vec.nonZeroes.get(i));
-
     }
 }
