@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Solution {
-    private static void connect(Node node, int level, Map<Integer, Node> tails) {
+    private void connect(Node node, int level, Map<Integer, Node> tails) {
         if (node == null) {
             return;
         }
