@@ -5,27 +5,33 @@ import com.studio3104.leetcode.structure.TreeNode;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+// Implement to meet the follow up condition
+// Follow up: Could you implement next() and hasNext() to run in average O(1) time and use O(h) memory, where h is the height of the tree?
 class BSTIterator {
-    private final Deque<Integer> q;
+    private final Deque<TreeNode> stack;
 
-    private void setQueueInOrder(TreeNode node) {
-        if (node == null) return;
-        setQueueInOrder(node.left);
-        q.addLast(node.val);
-        setQueueInOrder(node.right);
+    private void insertLeftToStack(TreeNode node) {
+        TreeNode current = node;
+        while (current != null) {
+            stack.addLast(current);
+            current = current.left;
+        }
     }
 
     public BSTIterator(TreeNode root) {
-        q = new ArrayDeque<>();
-        setQueueInOrder(root);
+        stack = new ArrayDeque<>();
+        insertLeftToStack(root);
     }
 
     public int next() {
-        if (q.isEmpty()) throw new RuntimeException();
-        return q.pollFirst();
+        if (stack.isEmpty()) throw new RuntimeException();
+
+        TreeNode node = stack.pollLast();
+        insertLeftToStack(node.right);
+        return node.val;
     }
 
     public boolean hasNext() {
-        return !q.isEmpty();
+        return !stack.isEmpty();
     }
 }
