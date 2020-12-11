@@ -1,7 +1,7 @@
 package com.studio3104.leetcode.explore.challenge.December.day11;
 
 class Solution {
-    public void shiftElement(int[] nums, int index) {
+    private void shiftElement(int[] nums, int index) {
         if (nums.length - (index + 1) < 0) return;
         System.arraycopy(nums, index + 1, nums, index + 1 - 1, nums.length - (index + 1));
     }
