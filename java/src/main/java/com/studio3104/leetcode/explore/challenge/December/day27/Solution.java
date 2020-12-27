@@ -20,10 +20,9 @@ class Solution {
 
         for (int i = 1; i < arr.length - 1; ++i) {
             int n = arr[i];
-            if (n == arr[i - 1] && n == arr[i + 1]) {
-                continue;
+            if (n != arr[i - 1] || n != arr[i + 1]) {
+                numbers.add(n);
             }
-            numbers.add(n);
         }
         numbers.add(arr[arr.length - 1]);
 
@@ -35,9 +34,7 @@ class Solution {
         Map<Integer, Set<Integer>> indexesOf = new HashMap<>();
 
         for (int i = 0; i < arr.length; ++i) {
-            int n = arr[i];
-            indexesOf.putIfAbsent(n, new HashSet<>());
-            indexesOf.get(n).add(i);
+            indexesOf.computeIfAbsent(arr[i], v -> new HashSet<>()).add(i);
         }
 
         Deque<int[]> q = new ArrayDeque<>();
