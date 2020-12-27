@@ -1,15 +1,38 @@
 package com.studio3104.leetcode.explore.challenge.December.day27;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 class Solution {
+    private int[] compressArray(int[] arr) {
+        if (arr.length <= 3) {
+            return arr;
+        }
+
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(arr[0]);
+
+        for (int i = 1; i < arr.length - 1; ++i) {
+            int n = arr[i];
+            if (n == arr[i - 1] && n == arr[i + 1]) {
+                continue;
+            }
+            numbers.add(n);
+        }
+        numbers.add(arr[arr.length - 1]);
+
+        return numbers.stream().mapToInt(n -> n).toArray();
+    }
+
     public int minJumps(int[] arr) {
+        arr = compressArray(arr);
         Map<Integer, Set<Integer>> indexesOf = new HashMap<>();
 
         for (int i = 0; i < arr.length; ++i) {

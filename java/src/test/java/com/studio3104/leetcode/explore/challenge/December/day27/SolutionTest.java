@@ -15,8 +15,7 @@ class SolutionTest {
                 Arguments.of(new int[]{100, -23, -23, 404, 100, 23, 23, 23, 3, 404}, 3),
                 Arguments.of(new int[]{7}, 0),
                 Arguments.of(new int[]{7, 6, 9, 6, 9, 6, 9, 7}, 1),
-                Arguments.of(new int[]{6, 1, 9}, 2),
-                Arguments.of(new int[]{11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13}, 3)
+                Arguments.of(new int[]{6, 1, 9}, 2)
         );
     }
 
