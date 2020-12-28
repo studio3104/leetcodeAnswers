@@ -11,6 +11,7 @@ class SolutionTest {
     @CsvSource({
             "3, 2",
             "2, 3",
+            "-1000000000, 44723"
     })
     void reachNumber(int target, int expected) {
         int actual = solution.reachNumber(target);
