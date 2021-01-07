@@ -10,9 +10,7 @@ impl Solution {
             let complement = target - n;
 
             if let Some(&index) = index_of.get(&complement) {
-                if index != i as i32 {
-                    return vec![index, i as i32]
-                }
+                return vec![index, i as i32]
             }
 
             index_of.insert(n, i as i32);
