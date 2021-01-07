@@ -10,7 +10,7 @@ impl Solution {
             let complement = target - n;
 
             if let Some(&index) = index_of.get(&complement) {
-                return vec![index, i as i32]
+                return vec![index, i as i32];
             }
 
             index_of.insert(n, i as i32);
@@ -23,24 +23,31 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use parameterized::parameterized;
 
-    #[parameterized(nums = {
+    use parameterized::parameterized;
+    use parameterized::ide;
+
+    mod two_sum_tests {
+        use super::*;
+        ide!();
+
+        #[parameterized(nums = {
         [2, 7, 11, 15].to_vec(),
         [3, 2, 4].to_vec(),
         [3, 3].to_vec(),
-    }, target = {
+        }, target = {
         9,
         6,
         6,
-    }, expected = {
+        }, expected = {
         [0, 1].to_vec(),
         [1, 2].to_vec(),
         [0, 1].to_vec(),
-    },
-    )]
-    fn test_two_sum(nums: Vec<i32>, target: i32, expected: Vec<i32>) {
-        let actual: Vec<i32> = Solution::two_sum(nums, target);
-        assert_eq!(expected, actual)
+        },
+        )]
+        fn test_two_sum(nums: Vec<i32>, target: i32, expected: Vec<i32>) {
+            let actual: Vec<i32> = Solution::two_sum(nums, target);
+            assert_eq!(expected, actual)
+        }
     }
 }
