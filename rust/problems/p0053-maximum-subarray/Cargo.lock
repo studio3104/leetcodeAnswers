@@ -2,26 +2,12 @@
 # It is not intended for manual editing.
 [[package]]
 name = "linked-hash-map"
-version = "0.5.3"
+version = "0.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8dd5a6d5999d9907cda8ed67bbd137d3af8085216c2ac62de5be860bd41f304a"
-
-[[package]]
-name = "p0001-two-sum"
-version = "0.1.0"
-dependencies = [
- "parameterized",
-]
+checksum = "7fb9b38af92608140b86b693604b9ffcc5824240a484d1ecd4795bacb2fe88f3"
 
 [[package]]
 name = "p0053-maximum-subarray"
-version = "0.1.0"
-dependencies = [
- "parameterized",
-]
-
-[[package]]
-name = "p0121-best-time-to-buy-and-sell-stock"
 version = "0.1.0"
 dependencies = [
  "parameterized",
