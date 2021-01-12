@@ -1,5 +1,3 @@
-from typing import List
-
 import pytest
 
 from p0003_Longest_Substring_Without_Repeating_Characters import Solution

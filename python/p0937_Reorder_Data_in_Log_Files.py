@@ -34,10 +34,10 @@ class Solution:
         digs: List[str] = []
         lets: List[str] = []
 
-        for l in logs:
-            if ''.join(l.split()[1:]).isdigit():
-                digs.append(l)
+        for log in logs:
+            if ''.join(log.split()[1:]).isdigit():
+                digs.append(log)
             else:
-                lets.append(l)
+                lets.append(log)
 
         return sort_lets(lets) + digs

@@ -1,9 +1,8 @@
-from typing import Dict, List, Tuple
-import pytest
 import re
-
 from collections import Counter
+from typing import List, Tuple
 
+import pytest
 
 PUNCTUATION_PATTERN = re.compile(r"[!\?',;\.]+")
 

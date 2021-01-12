@@ -1,11 +1,11 @@
-from typing import List, Tuple, Optional
+from typing import List, Optional
 
 import pytest
 
 from answer import Solution, TreeNode
 
 
-def create_tree(arr: List[Optional[int]]) -> TreeNode:
+def create_tree(arr: List[Optional[int]]) -> Optional[TreeNode]:
     if not arr:
         return None
 
