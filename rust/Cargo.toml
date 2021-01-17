@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "explore/challenge/2021/january/day11",
+    "explore/challenge/2021/january/week3",
+
+    "problems/p0001-two-sum",
+    "problems/p0121-best-time-to-buy-and-sell-stock",
+    "problems/p0053-maximum-subarray",
+]
