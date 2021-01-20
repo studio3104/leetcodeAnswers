@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "explore/challenge/2021/january/day11",
+    "explore/challenge/2021/january/day20",
     "explore/challenge/2021/january/week3",
 
     "problems/p0001-two-sum",
