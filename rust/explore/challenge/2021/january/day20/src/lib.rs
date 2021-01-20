@@ -1,24 +1,22 @@
-use std::collections::LinkedList;
-
 impl Solution {
     pub fn is_valid(s: String) -> bool {
-        let mut stack = LinkedList::new();
+        let mut stack = Vec::new();
 
         for c in s.chars() {
             if c == '(' || c == '[' || c == '{' {
-                stack.push_back(c);
+                stack.push(c);
                 continue;
             }
 
-            match stack.pop_back() {
+            match stack.pop() {
                 Some(prev) => {
                     if prev == '(' && c == ')' || prev == '[' && c == ']' || prev == '{' && c == '}' {
                         continue;
                     }
-                    stack.push_back(prev);
-                    stack.push_back(c);
+                    stack.push(prev);
+                    stack.push(c);
                 }
-                None => stack.push_back(c)
+                None => stack.push(c)
             }
         }
 
