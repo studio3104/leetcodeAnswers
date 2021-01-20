@@ -12,11 +12,11 @@ impl Solution {
 
             match stack.pop_back() {
                 Some(prev) => {
-                    if prev == '(' && c == ')' || prev == '[' && c == ']' || prev == '{' && c == '}' {}
-                    else {
-                        stack.push_back(prev);
-                        stack.push_back(c);
+                    if prev == '(' && c == ')' || prev == '[' && c == ']' || prev == '{' && c == '}' {
+                        continue;
                     }
+                    stack.push_back(prev);
+                    stack.push_back(c);
                 }
                 None => stack.push_back(c)
             }
