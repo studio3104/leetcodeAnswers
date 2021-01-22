@@ -11,6 +11,7 @@ class SolutionTest {
             "a, aa, false",
             "cabbba, abbccc, true",
             "cabbba, aabbss, false",
+            "uau, ssx, false",
     })
     void closeStrings(String word1, String word2, boolean expected) {
         Solution solution = new Solution();
