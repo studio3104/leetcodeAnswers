@@ -1,12 +1,15 @@
 class Solution:
     def getSmallestString(self, n: int, k: int) -> str:
-        chars = []
+        if (26 * n - k) % 25 == 0:
+            x = (26 * n - k) // 25
+            return 'a' * x + 'z' * (n - x)
 
-        while n > 0:
-            d, m = divmod((k - n + 1), 26)
-            o = m if d == 0 else 26
-            k -= o
-            chars.append(o)
-            n -= 1
+        temp = 26 * n - k - 26
+        if temp < 0:
+            x = 0
+            y = -temp
+        else:
+            y = 25 - (temp % 25)
+            x = (temp + y) // 25
 
-        return ''.join([chr(c + ord('a') - 1) for c in reversed(chars)])
+        return 'a' * x + chr(ord('a') - 1 + y) + 'z' * (n - 1 - x)
