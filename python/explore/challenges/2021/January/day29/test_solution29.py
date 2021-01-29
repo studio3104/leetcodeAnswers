@@ -18,7 +18,7 @@ def solution() -> Solution:
 def test_solution(root: TreeNode, expected: List[List[int]], solution: Solution) -> None:
     try:
         assert solution.verticalTraversal(root) == expected
-    except AssertionError as e:
+    except AssertionError:
         print()
         prettyPrintTree(root)
         raise
