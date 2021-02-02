@@ -21,14 +21,14 @@ def treeNodeToString(root: Optional[TreeNode]) -> str:
         current += 1
 
         if not node:
-            output = f"{output}null, "
+            output = f"{output}null,"
             continue
 
-        output = f"{output}{str(node.val)}, "
+        output = f"{output}{str(node.val)},"
         queue.append(node.left)
         queue.append(node.right)
 
-    return f"[{output[:-2]}]"
+    return f"[{output[:-1]}]"
 
 
 def stringToTreeNode(string: str) -> Optional[TreeNode]:
