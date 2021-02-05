@@ -1,20 +1,14 @@
 package com.studio3104.leetcode.explore.challenge.y2021.February.day05;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Deque;
 
 class Solution {
     public String simplifyPath(String path) {
-        // Construct strings between the slashes and make them contained into a queue
-        Deque<String> q = new ArrayDeque<>(
-                Arrays.asList(path.split("/").clone())
-        );
+        Deque<String> q = new ArrayDeque<>();
 
         // Change the connection destination of the previous element if `..` or `.` is included
-        int iterateCount = q.size();
-        for (int i = 0; i < iterateCount && !q.isEmpty(); ++i) {
-            String s = q.pollFirst();
+        for (String s : path.split("/")) {
             if (s.isEmpty() || s.equals(".")) {
                 continue;
             }

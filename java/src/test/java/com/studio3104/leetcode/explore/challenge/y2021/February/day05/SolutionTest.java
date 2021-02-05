@@ -11,6 +11,7 @@ class SolutionTest {
             "/../, /",
             "/home//foo, /home/foo",
             "/a/./b/../../c/, /c",
+            "/a/./b///../c/../././../d/..//../e/./f/./g/././//.//h///././/..///, /e/f/g",
     })
     void simplifyPath(String path, String expected) {
         Solution solution = new Solution();
