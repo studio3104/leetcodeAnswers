@@ -2,6 +2,9 @@ package com.studio3104.leetcode.structure;
 
 import lombok.EqualsAndHashCode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 @EqualsAndHashCode
 public class TreeNode {
     public int val;
@@ -21,33 +24,47 @@ public class TreeNode {
         this.right = right;
     }
 
-    public static TreeNode createFromString(String data) {
-        if (data.equals("[]"))
+    public static TreeNode createFromString(String input) {
+        input = input.trim();
+        input = input.substring(1, input.length() - 1);
+        if (input.length() == 0) {
             return null;
-
-        data = data.substring(1, data.length() - 1);
-        String[] split = data.split(",");
-
-        int len = split.length;
-        TreeNode[] treeNodes = new TreeNode[len];
-
-        for (int i = 0; i < len; i++) {
-            if (!split[i].equals("null"))
-                treeNodes[i] = new TreeNode(Integer.parseInt(split[i]));
         }
 
-        for (int i = 0; i < len; i++) {
-            if (treeNodes[i] != null) {
-                int leftIndex = i * 2 + 1;
-                if (leftIndex < len)
-                    treeNodes[i].left = treeNodes[leftIndex];
+        String[] parts = input.split(",");
+        String item = parts[0];
+        TreeNode root = new TreeNode(Integer.parseInt(item));
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.add(root);
 
-                int rightIndex = leftIndex + 1;
-                if (rightIndex < len)
-                    treeNodes[i].right = treeNodes[rightIndex];
+        int index = 1;
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.remove();
+
+            if (index == parts.length) {
+                break;
+            }
+
+            item = parts[index++];
+            item = item.trim();
+            if (!item.equals("null")) {
+                int leftNumber = Integer.parseInt(item);
+                node.left = new TreeNode(leftNumber);
+                nodeQueue.add(node.left);
+            }
+
+            if (index == parts.length) {
+                break;
+            }
+
+            item = parts[index++];
+            item = item.trim();
+            if (!item.equals("null")) {
+                int rightNumber = Integer.parseInt(item);
+                node.right = new TreeNode(rightNumber);
+                nodeQueue.add(node.right);
             }
         }
-
-        return treeNodes[0];
+        return root;
     }
 }
