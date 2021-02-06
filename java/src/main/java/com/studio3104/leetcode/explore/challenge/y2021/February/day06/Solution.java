@@ -31,7 +31,7 @@ class Solution {
         // Take the same approach with the 1st iteration
         current = root.left;
         int depth = result.size();
-        for (; depth >= -1 && current != null; --depth) {
+        for (; depth > 1 && current != null; --depth) {
             current = current.right != null ? current.right : current.left;
         }
         appendRightSideView(current, result);

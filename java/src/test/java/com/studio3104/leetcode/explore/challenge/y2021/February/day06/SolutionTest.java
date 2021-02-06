@@ -14,7 +14,8 @@ import java.util.stream.Stream;
 class SolutionTest {
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
-                Arguments.of("[1,2,3,null,5,null,4]", List.of(1, 3, 4))
+                Arguments.of("[1,2,3,null,5,null,4]", List.of(1, 3, 4)),
+                Arguments.of("[1,2,3,4]", List.of(1, 3, 4))
         );
     }
 
