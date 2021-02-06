@@ -21,19 +21,28 @@ class Solution {
         // Traverse the right side of the tree during checking its depth
         // (The depth is gonna be same as the length of the result)
         // If the right side is null, then check the left side
-        // Finish the 1st iteration if both sides are null
+        // Finish the 1st iteration if both sides of current node are null
         List<Integer> result = new ArrayList<>();
         TreeNode current = root;
         appendRightSideView(current, result);
 
-        // Iterate the tree again from root, the first destination is gonna be left, thereafter right
+        // Iterate the tree again from root
+        // If there is a path on the left, prioritize the left side only once
         // Continue traversing until it reaches the depth that was checked in the previous loop
-        // Take the same approach with the 1st iteration
-        current = root.left;
+        // Thereafter, take the same approach with the 1st iteration
+        current = root;
         int depth = result.size();
-        for (; depth > 1 && current != null; --depth) {
+        boolean hasPassedLeft = false;
+
+        for (; depth > 0 && current != null; --depth) {
+            if (!hasPassedLeft && current.left != null) {
+                current = current.left;
+                hasPassedLeft = true;
+                continue;
+            }
             current = current.right != null ? current.right : current.left;
         }
+
         appendRightSideView(current, result);
 
         return result;
