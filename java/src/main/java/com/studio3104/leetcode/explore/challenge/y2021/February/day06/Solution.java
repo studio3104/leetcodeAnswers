@@ -24,7 +24,7 @@ class Solution {
 
         List<Integer> result = new ArrayList<>();
         // Traverse the tree inorder (right to left)
-        // Collect the last element that appeared in each level
+        // Collect the first element that appeared in each level
         rightSideView(root, 0, result);
 
         return result;
