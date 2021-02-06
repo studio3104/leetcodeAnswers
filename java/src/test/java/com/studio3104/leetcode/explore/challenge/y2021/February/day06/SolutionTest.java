@@ -16,7 +16,8 @@ class SolutionTest {
         return Stream.of(
                 Arguments.of("[1,2,3,null,5,null,4]", List.of(1, 3, 4)),
                 Arguments.of("[1,2,3,4]", List.of(1, 3, 4)),
-                Arguments.of("[1,null,2,null,5,4,6,3]", List.of(1, 2, 5, 6, 3))
+                Arguments.of("[1,null,2,null,5,4,6,3]", List.of(1, 2, 5, 6, 3)),
+                Arguments.of("[5,3,6,1,4,null,null,null,2]", List.of(5, 6, 4, 2))
         );
     }
 

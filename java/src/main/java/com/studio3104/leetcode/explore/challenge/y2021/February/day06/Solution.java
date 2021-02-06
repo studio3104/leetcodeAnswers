@@ -3,14 +3,20 @@ package com.studio3104.leetcode.explore.challenge.y2021.February.day06;
 import com.studio3104.leetcode.structure.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class Solution {
-    private void appendRightSideView(TreeNode current, List<Integer> result) {
-        while (current != null) {
-            result.add(current.val);
-            current = current.right != null ? current.right : current.left;
+    private void rightSideView(TreeNode current, int level, Map<Integer, Integer> result) {
+        if (current == null) {
+            return;
         }
+        result.put(level, current.val);
+        rightSideView(current.left, level + 1, result);
+        rightSideView(current.right, level + 1, result);
     }
 
     public List<Integer> rightSideView(TreeNode root) {
@@ -18,33 +24,14 @@ class Solution {
             return List.of();
         }
 
-        // Traverse the right side of the tree during checking its depth
-        // (The depth is gonna be same as the length of the result)
-        // If the right side is null, then check the left side
-        // Finish the 1st iteration if both sides of current node are null
-        List<Integer> result = new ArrayList<>();
-        TreeNode current = root;
-        appendRightSideView(current, result);
+        Map<Integer, Integer> result = new HashMap<>();
+        // Traverse the tree inorder
+        // Collect the last element that appeared in each level
+        rightSideView(root, 0, result);
 
-        // Iterate the tree again from root
-        // If there is a path on the left, prioritize the left side only once
-        // Continue traversing until it reaches the depth that was checked in the previous loop
-        // Thereafter, take the same approach with the 1st iteration
-        current = root;
-        int depth = result.size();
-        boolean hasPassedLeft = false;
-
-        for (; depth > 0 && current != null; --depth) {
-            if (!hasPassedLeft && current.left != null) {
-                current = current.left;
-                hasPassedLeft = true;
-                continue;
-            }
-            current = current.right != null ? current.right : current.left;
-        }
-
-        appendRightSideView(current, result);
-
-        return result;
+        return IntStream.range(0, result.size())
+                .map(result::get)
+                .boxed()
+                .collect(Collectors.toList());
     }
 }
