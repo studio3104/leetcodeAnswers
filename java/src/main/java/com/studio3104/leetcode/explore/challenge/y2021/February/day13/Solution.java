@@ -15,7 +15,7 @@ class Solution {
         q.add(new int[]{0, 0, 1});
 
         while (!q.isEmpty()) {
-            int[] c = q.pollLast();
+            int[] c = q.pollFirst();
             int y = c[0], x = c[1], distance = c[2];
 
             if (y < 0 || x < 0 || y >= grid.length || x >= grid.length) {
