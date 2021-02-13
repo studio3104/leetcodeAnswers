@@ -5,7 +5,7 @@ import java.util.Deque;
 
 class Solution {
     public int shortestPathBinaryMatrix(int[][] grid) {
-        // Traverse the grid in right side 5 adjacent directions
+        // Traverse the grid in 8 adjacent directions
         // while noting the shortest distance that can be reached to the current position.
 
         int len = grid.length;
@@ -28,7 +28,7 @@ class Solution {
             memo[y][x] = distance;
 
             for (int i = -1; i <= 1; ++i) {
-                for (int j = 0; j <= 1; ++j) {
+                for (int j = -1; j <= 1; ++j) {
                     if (i == 0 && j == 0) {
                         continue;
                     }

@@ -10,8 +10,9 @@ import java.util.stream.Stream;
 class SolutionTest {
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
-                Arguments.of(new int[][]{{0, 1}, {1, 0}}, 2),
-                Arguments.of(new int[][]{{0, 0, 0}, {1, 1, 0}, {1, 1, 0}}, 4)
+//                Arguments.of(new int[][]{{0, 1}, {1, 0}}, 2),
+//                Arguments.of(new int[][]{{0, 0, 0}, {1, 1, 0}, {1, 1, 0}}, 4),
+                Arguments.of(new int[][]{{0, 0, 1, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 1, 0}, {1, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 0, 1}, {0, 0, 1, 0, 0, 0, 0}}, 10)
         );
     }
 
