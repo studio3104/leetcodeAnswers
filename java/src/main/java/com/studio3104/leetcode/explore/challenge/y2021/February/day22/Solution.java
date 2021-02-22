@@ -14,14 +14,17 @@ class Solution {
     }
 
     public String findLongestWord(String s, List<String> d) {
-        d.sort((s1, s2) -> s2.length() != s1.length() ? s2.length() - s1.length() : s1.compareTo(s2));
+        String longestWord = "";
 
         for (String str : d) {
-            if (isSubsequence(str, s)) {
-                return str;
+            if (!isSubsequence(str, s)) {
+                continue;
+            }
+            if (str.length() > longestWord.length() || (str.length() == longestWord.length() && str.compareTo(longestWord) < 0)) {
+                longestWord = str;
             }
         }
 
-        return "";
+        return longestWord;
     }
 }
