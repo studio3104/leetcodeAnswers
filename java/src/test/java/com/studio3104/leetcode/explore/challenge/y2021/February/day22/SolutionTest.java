@@ -13,7 +13,8 @@ class SolutionTest {
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
                 Arguments.of("abpcplea", List.of("ale", "apple", "monkey", "plea"), "apple"),
-                Arguments.of("abpcplea", List.of("a", "b", "c"), "a")
+                Arguments.of("abpcplea", List.of("a", "b", "c"), "a"),
+                Arguments.of("aaa", List.of("aaa", "aa", "a"), "aaa")
         );
     }
 
