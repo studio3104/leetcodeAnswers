@@ -8,17 +8,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 class SolutionTest {
-    @lombok.AllArgsConstructor
+    @lombok.RequiredArgsConstructor
     static class TestParameter {
         final String s;
         final List<String> d;
         final String expected;
-
-//        TestParameter(String s, List<String> d, String expected) {
-//            this.s = s;
-//            this.d = d;
-//            this.expected = expected;
-//        }
     }
 
     static Stream<TestParameter> argumentsProvider() {
