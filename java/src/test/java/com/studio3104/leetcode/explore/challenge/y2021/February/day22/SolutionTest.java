@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.stream.Stream;
 
 class SolutionTest {
-    @lombok.RequiredArgsConstructor
+    @lombok.Value(staticConstructor = "of")
     static class TestParameter {
-        final String s;
-        final List<String> d;
-        final String expected;
+        String s;
+        List<String> d;
+        String expected;
     }
 
     static Stream<TestParameter> argumentsProvider() {
         return Stream.of(
-                new TestParameter("abpcplea", List.of("ale", "apple", "monkey", "plea"), "apple"),
-                new TestParameter("abpcplea", List.of("a", "b", "c"), "a"),
-                new TestParameter("aaa", List.of("aaa", "aa", "a"), "aaa")
+                TestParameter.of("abpcplea", List.of("ale", "apple", "monkey", "plea"), "apple"),
+                TestParameter.of("abpcplea", List.of("a", "b", "c"), "a"),
+                TestParameter.of("aaa", List.of("aaa", "aa", "a"), "aaa")
         );
     }
 
