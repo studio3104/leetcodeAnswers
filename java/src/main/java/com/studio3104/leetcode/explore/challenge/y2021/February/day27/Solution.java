@@ -11,6 +11,9 @@ class Solution {
         if (dividend == Integer.MIN_VALUE && divisor == 1) {
             return Integer.MIN_VALUE;
         }
+        if (divisor == 1 || divisor == -1) {
+            return divisor > 0 ? dividend : -dividend;
+        }
 
         boolean negative = false;
         if (dividend < 0) {

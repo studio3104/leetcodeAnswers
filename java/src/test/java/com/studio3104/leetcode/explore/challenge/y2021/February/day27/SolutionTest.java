@@ -12,6 +12,7 @@ class SolutionTest {
             "0, 1, 0",
             "1, 1, 1",
             "-1, 1, -1",
+            "2147483647, 1, 2147483647",
     })
     void divide(int dividend, int divisor, int expected) {
         Solution solution = new Solution();
