@@ -5,6 +5,12 @@ class Solution {
         if (divisor == 0) {
             throw new ArithmeticException("/ by zero");
         }
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+            return Integer.MAX_VALUE;
+        }
+        if (dividend == Integer.MIN_VALUE && divisor == 1) {
+            return Integer.MIN_VALUE;
+        }
 
         boolean negative = false;
         if (dividend < 0) {
