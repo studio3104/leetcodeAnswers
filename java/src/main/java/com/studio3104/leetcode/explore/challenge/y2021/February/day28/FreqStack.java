@@ -10,6 +10,7 @@ class FreqStack {
     private final LinkedList<Integer> stack;
     private final Map<Integer, Integer> counter;
     private final Set<Integer> mostFrequentElements;
+    private int mostFrequentCount = 0;
 
     public FreqStack() {
         stack = new LinkedList<>();
@@ -20,7 +21,18 @@ class FreqStack {
     public void push(int x) {
         stack.push(x);
         counter.put(x, counter.getOrDefault(x, 0) + 1);
-        mostFrequentElements.clear();
+
+        int count = counter.get(x);
+
+        if (count < mostFrequentCount) {
+            return;
+        }
+
+        if (count > mostFrequentCount) {
+            mostFrequentCount = count;
+            mostFrequentElements.clear();
+        }
+        mostFrequentElements.add(x);
     }
 
     public int pop() {
@@ -68,5 +80,7 @@ class FreqStack {
             }
             mostFrequentElements.add(n);
         }
+
+        mostFrequentCount = maxCount;
     }
 }
