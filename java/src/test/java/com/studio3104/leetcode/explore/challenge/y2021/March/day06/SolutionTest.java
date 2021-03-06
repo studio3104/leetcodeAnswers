@@ -12,7 +12,8 @@ class SolutionTest {
         return Stream.of(
                 Arguments.of(new String[]{"time", "im", "bell"}, 13),
                 Arguments.of(new String[]{"time", "me", "bell"}, 10),
-                Arguments.of(new String[]{"t"}, 2)
+                Arguments.of(new String[]{"t"}, 2),
+                Arguments.of(new String[]{"me", "time"}, 5)
         );
     }
 
