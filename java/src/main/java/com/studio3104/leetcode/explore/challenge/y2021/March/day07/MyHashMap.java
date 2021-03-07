@@ -1,51 +1,82 @@
 package com.studio3104.leetcode.explore.challenge.y2021.March.day07;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-class MyHashMap {
-    /*
-    Note:
-    - All keys and values will be in the range of [0, 1000000].
-    - The number of operations will be in the range of [1, 10000].
-    - Please do not use the built-in HashMap library.
-    */
+class Pair<U, V> {
+    public U first;
+    public V second;
 
-    private final Integer[] array;
-
-    /**
-     * Initialize your data structure here.
-     */
-    public MyHashMap() {
-        array = new Integer[1_000_000];
-        Arrays.fill(array, null);
-    }
-
-    /**
-     * value will always be non-negative.
-     */
-    public void put(int key, int value) {
-        array[key] = value;
-    }
-
-    /**
-     * Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
-     */
-    public int get(int key) {
-        return array[key] == null ? -1 : array[key];
-    }
-
-    /**
-     * Removes the mapping of the specified value key if this map contains a mapping for the key
-     */
-    public void remove(int key) {
-        array[key] = null;
+    public Pair(U first, V second) {
+        this.first = first;
+        this.second = second;
     }
 }
 
-/*
-  Your MyHashMap object will be instantiated and called as such:
-  MyHashMap obj = new MyHashMap();
-  obj.put(key,value);
-  int param_2 = obj.get(key);
-  obj.remove(key);
- */
+class Bucket {
+    private final List<Pair<Integer, Integer>> bucket;
+
+    public Bucket() {
+        bucket = new LinkedList<>();
+    }
+
+    public Integer get(Integer key) {
+        for (Pair<Integer, Integer> pair : bucket) {
+            if (pair.first.equals(key)) {
+                return pair.second;
+            }
+        }
+        return -1;
+    }
+
+    public void update(Integer key, Integer value) {
+        boolean found = false;
+        for (Pair<Integer, Integer> pair : bucket) {
+            if (pair.first.equals(key)) {
+                pair.second = value;
+                found = true;
+            }
+        }
+        if (!found) {
+            bucket.add(new Pair<>(key, value));
+        }
+    }
+
+    public void remove(Integer key) {
+        for (Pair<Integer, Integer> pair : bucket) {
+            if (pair.first.equals(key)) {
+                bucket.remove(pair);
+                break;
+            }
+        }
+    }
+}
+
+class MyHashMap {
+    private final int keySpace;
+    private final List<Bucket> bucketList;
+
+    public MyHashMap() {
+        keySpace = 2069;
+        bucketList = new ArrayList<>();
+        for (int i = 0; i < keySpace; ++i) {
+            bucketList.add(new Bucket());
+        }
+    }
+
+    public void put(int key, int value) {
+        int hashKey = key % keySpace;
+        bucketList.get(hashKey).update(key, value);
+    }
+
+    public int get(int key) {
+        int hashKey = key % keySpace;
+        return bucketList.get(hashKey).get(key);
+    }
+
+    public void remove(int key) {
+        int hashKey = key % keySpace;
+        bucketList.get(hashKey).remove(key);
+    }
+}
