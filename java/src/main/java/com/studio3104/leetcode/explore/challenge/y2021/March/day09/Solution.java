@@ -22,8 +22,7 @@ class Solution {
     }
 
     public TreeNode addOneRow(TreeNode root, int v, int d) {
-        TreeNode pseudo = new TreeNode(0);
-        pseudo.left = root;
+        TreeNode pseudo = new TreeNode(0, root, null);
         insertValue(pseudo, 0, v, d);
         return pseudo.left;
     }
