@@ -1,31 +1,20 @@
 package com.studio3104.leetcode.explore.challenge.y2021.March.day11;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 class Solution {
-    private void check(int[] coins, int remain, int currentNumCoins, Map<Integer, Integer> minimums) {
-        if (remain <= 0) {
-            return;
-        }
-
-        for (int c : coins) {
-            int nextRemain = remain - c;
-            if (minimums.containsKey(nextRemain) && minimums.get(nextRemain) <= currentNumCoins) {
-                continue;
-            }
-            minimums.put(nextRemain, currentNumCoins);
-            check(coins, nextRemain, currentNumCoins + 1, minimums);
-        }
-    }
-
     public int coinChange(int[] coins, int amount) {
-        if (amount == 0) {
-            return 0;
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, dp.length);
+        dp[0] = 0;
+
+        for (int i = 1; i < dp.length; ++i) {
+            for (int c : coins) {
+                if (i < c) continue;
+                dp[i] = Math.min(dp[i], dp[i - c] + 1);
+            }
         }
 
-        Map<Integer, Integer> minimums = new HashMap<>();
-        check(coins, amount, 1, minimums);
-        return minimums.getOrDefault(0, -1);
+        return dp[amount] == dp.length ? -1 : dp[amount];
     }
 }
