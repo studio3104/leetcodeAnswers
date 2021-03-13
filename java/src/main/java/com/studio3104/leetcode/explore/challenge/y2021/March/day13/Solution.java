@@ -37,7 +37,7 @@ class Solution {
 
         Map<Integer, Long> memo = new HashMap<>();
         return (int) (Arrays.stream(arr)
-                        .mapToLong(n -> traverse(n, memo, v))
-                        .sum() % (Math.pow(10, 9) + 7));
+                .mapToLong(n -> traverse(n, memo, v))
+                .sum() % (Math.pow(10, 9) + 7));
     }
 }
