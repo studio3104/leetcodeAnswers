@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 class Solution {
-    private int traverse(int n, Map<Integer, Integer> memo, Map<Integer, List<int[]>> v) {
+    private long traverse(int n, Map<Integer, Long> memo, Map<Integer, List<int[]>> v) {
         if (memo.containsKey(n)) {
             return memo.get(n);
         }
 
         memo.put(n, 1 + v.get(n).stream()
-                .mapToInt(a -> traverse(a[0], memo, v) * traverse(a[1], memo, v))
+                .mapToLong(a -> traverse(a[0], memo, v) * traverse(a[1], memo, v))
                 .sum()
         );
 
@@ -35,9 +35,9 @@ class Solution {
             }
         }
 
-        Map<Integer, Integer> memo = new HashMap<>();
-        return Arrays.stream(arr)
-                .map(n -> traverse(n, memo, v))
-                .sum() % (int) (Math.pow(10, 9) + 7);
+        Map<Integer, Long> memo = new HashMap<>();
+        return (int) (Arrays.stream(arr)
+                        .mapToLong(n -> traverse(n, memo, v))
+                        .sum() % (Math.pow(10, 9) + 7));
     }
 }
