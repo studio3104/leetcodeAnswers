@@ -1,44 +1,22 @@
 package com.studio3104.leetcode.explore.challenge.y2021.March.day18;
 
-import java.util.Stack;
-
-class Solution {
+public class Solution {
     public int wiggleMaxLength(int[] nums) {
         if (nums.length <= 1) {
             return nums.length;
         }
 
-        int i = 1;
-        for (; i < nums.length; ++i) {
-            if (nums[i - 1] != nums[i]) {
-                break;
+        int previousDiff = nums[1] - nums[0];
+        int count = previousDiff != 0 ? 2 : 1;
+
+        for (int i = 2; i < nums.length; ++i) {
+            int diff = nums[i] - nums[i - 1];
+            if (diff > 0 && previousDiff <= 0 || diff < 0 && previousDiff >= 0) {
+                ++count;
+                previousDiff = diff;
             }
         }
 
-        if (i == nums.length) {
-            return 1;
-        }
-
-        Stack<Integer> stack = new Stack<>();
-        stack.add(nums[i - 1]);
-        stack.add(nums[i]);
-
-        boolean expectNextHigher = nums[i - 1] > nums[i];
-
-        for (i = i + 1; i < nums.length; ++i) {
-            int n = nums[i];
-            int p = stack.peek();
-
-            if (p == n) {
-                continue;
-            }
-
-            if (p < n && expectNextHigher || p > n && !expectNextHigher) {
-                stack.add(n);
-                expectNextHigher = !expectNextHigher;
-            }
-        }
-
-        return stack.size();
+        return count;
     }
 }
