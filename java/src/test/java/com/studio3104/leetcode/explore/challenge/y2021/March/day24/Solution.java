@@ -26,7 +26,7 @@ class Solution {
         while (!pqA.isEmpty()) {
             int a = pqA.poll();
             int b = pqB.peek();
-            if (b > a) {
+            if (b >= a) {
                 remains.add(a);
                 continue;
             }
