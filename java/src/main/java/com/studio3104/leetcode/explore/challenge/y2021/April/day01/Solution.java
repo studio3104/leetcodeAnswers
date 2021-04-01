@@ -8,7 +8,7 @@ class Solution {
         ListNode current = head;
 
         while (current != null) {
-            ListNode temporary = head.next;
+            ListNode temporary = current.next;
             current.next = previous;
             previous = current;
             current = temporary;
