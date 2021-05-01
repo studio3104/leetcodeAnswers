@@ -11,7 +11,8 @@ class SolutionTest {
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
                 Arguments.of(5, new int[][]{{0, 1}, {1, 2}, {3, 4}}, 2),
-                Arguments.of(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {3, 4}}, 1)
+                Arguments.of(5, new int[][]{{0, 1}, {1, 2}, {2, 3}, {3, 4}}, 1),
+                Arguments.of(4, new int[][]{{2, 3}, {1, 2}, {1, 3}}, 2)
         );
     }
 

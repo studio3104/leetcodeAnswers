@@ -21,11 +21,13 @@ class Solution {
 
     public int countComponents(int n, int[][] edges) {
         Map<Integer, Set<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < n; ++i) {
+            graph.put(i, new HashSet<>());
+        }
+
         for (int[] edge : edges) {
             int a = edge[0];
             int b = edge[1];
-            graph.putIfAbsent(a, new HashSet<>());
-            graph.putIfAbsent(b, new HashSet<>());
             graph.get(a).add(b);
             graph.get(b).add(a);
         }
@@ -35,6 +37,7 @@ class Solution {
             if (!graph.containsKey(i)) {
                 continue;
             }
+
             traverseAndRemove(i, graph);
             ++counter;
         }
