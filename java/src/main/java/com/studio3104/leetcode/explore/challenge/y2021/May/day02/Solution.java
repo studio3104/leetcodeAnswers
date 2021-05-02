@@ -6,8 +6,12 @@ import java.util.PriorityQueue;
 
 class Solution {
     public int scheduleCourse(int[][] courses) {
+        // Sort ascending by deadline
         Arrays.sort(courses, Comparator.comparingInt(c -> c[1]));
-        PriorityQueue<Integer> durationOfCoursesTaken = new PriorityQueue<>((c1, c2) -> c2 - c1);
+
+        // Initialize a priority queue that holds durations in descending order
+        PriorityQueue<Integer> durationsOfCoursesTaken = new PriorityQueue<>((c1, c2) -> c2 - c1);
+
         int totalTimeSpent = 0;
 
         for (int[] c : courses) {
@@ -15,20 +19,20 @@ class Solution {
             int deadline = c[1];
 
             if (totalTimeSpent + duration <= deadline) {
-                durationOfCoursesTaken.add(duration);
+                durationsOfCoursesTaken.add(duration);
                 totalTimeSpent += duration;
                 continue;
             }
 
-            if (durationOfCoursesTaken.isEmpty() || durationOfCoursesTaken.peek() <= duration) {
+            if (durationsOfCoursesTaken.isEmpty() || durationsOfCoursesTaken.peek() <= duration) {
                 continue;
             }
 
-            totalTimeSpent -= durationOfCoursesTaken.poll();
+            totalTimeSpent -= durationsOfCoursesTaken.poll();
             totalTimeSpent += duration;
-            durationOfCoursesTaken.add(duration);
+            durationsOfCoursesTaken.add(duration);
         }
 
-        return durationOfCoursesTaken.size();
+        return durationsOfCoursesTaken.size();
     }
 }
