@@ -9,7 +9,7 @@ class Solution {
         }
         mark[index] = step;
 
-        for (int i = index + 1; i <= index + nums[index]; ++i) {
+        for (int i = index + nums[index]; i > index; --i) {
             traverse(nums, i, step + 1, mark);
         }
     }
