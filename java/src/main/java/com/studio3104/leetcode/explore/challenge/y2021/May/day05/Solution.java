@@ -4,16 +4,12 @@ import java.util.Arrays;
 
 class Solution {
     private void traverse(int[] nums, int index, int step, int[] mark) {
-        if (index < 0 || index >= nums.length) {
-            return;
-        }
-        if (step >= mark[index]) {
+        if (index < 0 || index >= nums.length || step >= mark[index]) {
             return;
         }
         mark[index] = step;
 
-        int n = nums[index];
-        for (int i = index - n; i <= index + n; ++i) {
+        for (int i = index + 1; i <= index + nums[index]; ++i) {
             traverse(nums, i, step + 1, mark);
         }
     }
