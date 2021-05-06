@@ -30,12 +30,10 @@ class Solution {
         ListNode middle = getMiddleElement(head);
         TreeNode node = new TreeNode(middle.val);
 
-        if (head == middle) {
-            return node;
+        if (head != middle) {
+            node.left = sortedListToBST(head);
+            node.right = sortedListToBST(middle.next);
         }
-
-        node.left = sortedListToBST(head);
-        node.right = sortedListToBST(middle.next);
 
         return node;
     }
