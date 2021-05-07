@@ -9,6 +9,7 @@ class SolutionTest {
     @CsvSource({
             "sea, eat, 2",
             "leetcode, etco, 4",
+            "a, b, 2",
     })
     void minDistance(String word1, String word2, int expected) {
         Solution solution = new Solution();
