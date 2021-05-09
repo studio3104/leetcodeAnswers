@@ -11,18 +11,14 @@ class Solution {
         }
 
         Arrays.sort(boxes);
-        int boxIndex = 0;
         int numBoxes = 0;
         for (int i = warehouse.length - 1; i >= 0; --i) {
-            if (boxIndex >= boxes.length) {
+            if (numBoxes >= boxes.length) {
                 break;
             }
-
-            if (boxes[boxIndex] > warehouse[i]) {
+            if (boxes[numBoxes] > warehouse[i]) {
                 continue;
             }
-
-            ++boxIndex;
             ++numBoxes;
         }
 
