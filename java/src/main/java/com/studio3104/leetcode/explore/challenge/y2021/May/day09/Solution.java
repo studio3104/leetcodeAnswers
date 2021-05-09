@@ -13,13 +13,18 @@ class Solution {
 
         while (!q.isEmpty() && q.peek() != 1) {
             int n = q.poll();
-            int sub = sum - n * 2;
-            if (sub >= 0) {
+            int sub = sum - n;
+            if (sub == 1) {
+                return true;
+            }
+
+            int m = n % sub;
+            if (m == 0 || m == n) {
                 return false;
             }
 
-            q.add(Math.abs(sub));
-            sum = sum - n + Math.abs(sub);
+            q.add(m);
+            sum = sum - n + m;
         }
 
         return true;
