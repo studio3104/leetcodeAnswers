@@ -4,6 +4,10 @@ import java.util.PriorityQueue;
 
 class Solution {
     public boolean isPossible(int[] target) {
+        if (target.length == 1) {
+            return target[0] == 1;
+        }
+
         PriorityQueue<Integer> q = new PriorityQueue<>((a, b) -> b - a);
         int sum = 0;
         for (int n : target) {

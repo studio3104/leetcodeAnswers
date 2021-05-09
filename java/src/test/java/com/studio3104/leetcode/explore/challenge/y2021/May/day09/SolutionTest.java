@@ -13,7 +13,8 @@ class SolutionTest {
                 Arguments.of(new int[]{9, 3, 5}, true),
                 Arguments.of(new int[]{1, 1, 1, 2}, false),
                 Arguments.of(new int[]{8, 5}, true),
-                Arguments.of(new int[]{1, 1000000000}, true)
+                Arguments.of(new int[]{1, 1000000000}, true),
+                Arguments.of(new int[]{2}, false)
         );
     }
 
