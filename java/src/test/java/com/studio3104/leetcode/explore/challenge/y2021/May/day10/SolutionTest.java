@@ -11,6 +11,7 @@ class SolutionTest {
             "0, 0",
             "1, 0",
             "2, 0",
+            "499979, 41537",
     })
     void countPrimes(int n, int expected) {
         Solution solution = new Solution();

@@ -24,8 +24,8 @@ class Solution {
 
             primes.add(i);
 
-            for (int j = i * i; j < n; j += i) {
-                isPrime[j] = false;
+            for (long j = (long) i * i; j < n; j += i) {
+                isPrime[(int) j] = false;
             }
         }
 
