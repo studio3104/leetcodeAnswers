@@ -10,6 +10,7 @@ class SolutionTest {
             "10, 4",
             "0, 0",
             "1, 0",
+            "2, 0",
     })
     void countPrimes(int n, int expected) {
         Solution solution = new Solution();
