@@ -15,8 +15,8 @@ class Solution {
         }
 
         int score = total - exclusion;
-        for (int i = cardPoints.length - k + 1; i < cardPoints.length; ++i) {
-            exclusion = exclusion - cardPoints[i - k] + cardPoints[i];
+        for (int i = 0; i + cardPoints.length - k < cardPoints.length; ++i) {
+            exclusion = exclusion - cardPoints[i] + cardPoints[i + cardPoints.length - k];
             score = Math.max(score, total - exclusion);
         }
 
