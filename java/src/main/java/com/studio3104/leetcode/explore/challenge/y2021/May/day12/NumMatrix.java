@@ -11,21 +11,12 @@ class NumMatrix {
 
             for (int j = matrix[i].length - 1; j >= 0; --j) {
                 rowSum += matrix[i][j];
-                sums[i][j] = rowSum;
-
-                if (i != matrix.length - 1) {
-                    sums[i][j] += sums[i + 1][j];
-                }
+                sums[i][j] = rowSum + sums[i + 1][j];
             }
         }
     }
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
-        int sum = sums[row1][col1];
-        sum -= sums[row2 + 1][col1];
-        sum -= sums[row1][col2 + 1];
-        sum += sums[row2 + 1][col2 + 1];
-
-        return sum;
+        return sums[row1][col1] - sums[row2 + 1][col1] - sums[row1][col2 + 1] + sums[row2 + 1][col2 + 1];
     }
 }
