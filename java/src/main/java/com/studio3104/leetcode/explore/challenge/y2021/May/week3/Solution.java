@@ -16,6 +16,7 @@ class Solution {
         Queue<List<Integer>> q = new ArrayDeque<>();
         q.add(List.of(0, 0, 0));
 
+        double minDistance = Math.sqrt(Math.abs(x) + Math.abs(y));
         int[][] offsets = new int[][]{{1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}};
 
         while (!q.isEmpty()) {
@@ -33,6 +34,12 @@ class Solution {
                     continue;
                 }
                 visited.add(p);
+
+                double distance = Math.sqrt(x - Math.abs(px) + Math.abs(y - py));
+                if (minDistance < distance) {
+                    continue;
+                }
+                minDistance = Math.min(minDistance, distance);
 
                 q.add(List.of(px, py, count + 1));
             }
