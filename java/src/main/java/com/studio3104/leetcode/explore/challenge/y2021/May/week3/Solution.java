@@ -1,48 +1,81 @@
 package com.studio3104.leetcode.explore.challenge.y2021.May.week3;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 
 class Solution {
-    public int minKnightMoves(int x, int y) {
-        if (x == 0 && y == 0) {
-            return 0;
+    private final int[][] DIRECTIONS = new int[][]{{2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}};
+
+    private static class Position {
+        final int x;
+        final int y;
+
+        Position(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
 
-        Set<List<Integer>> visited = new HashSet<>();
-        Queue<List<Integer>> q = new ArrayDeque<>();
-        q.add(List.of(0, 0, 0));
+        public boolean equals(final Object o) {
+            if (o == this) return true;
+            if (!(o instanceof Position)) return false;
+            final Position other = (Position) o;
+            if (!other.canEqual(this)) return false;
+            if (this.x != other.x) return false;
+            return this.y == other.y;
+        }
 
-        double minDistance = Math.sqrt(Math.abs(x) + Math.abs(y));
-        int[][] offsets = new int[][]{{1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}, {-2, 1}, {-1, 2}};
+        protected boolean canEqual(final Object other) {
+            return other instanceof Position;
+        }
 
-        while (!q.isEmpty()) {
-            List<Integer> current = q.poll();
-            int cx = current.get(0), cy = current.get(1), count = current.get(2);
+        public int hashCode() {
+            final int PRIME = 59;
+            int result = 1;
+            result = result * PRIME + this.x;
+            result = result * PRIME + this.y;
+            return result;
+        }
+    }
 
-            for (int[] offset : offsets) {
-                int px = cx + offset[0], py = cy + offset[1];
-                if (px == x && py == y) {
-                    return count + 1;
-                }
+    public int minKnightMoves(int x, int y) {
+        Position target = new Position(Math.abs(x), Math.abs(y));
 
-                List<Integer> p = List.of(px, py);
-                if (visited.contains(p)) {
+        Deque<Position> queue = new ArrayDeque<>();
+        Position initial = new Position(0, 0);
+        queue.add(initial);
+
+        Set<Position> visited = new HashSet<>();
+
+        int result = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+
+            for (int i = 0; i < size; ++i) {
+                Position current = queue.pollFirst();
+
+                if (current == null || visited.contains(current)) {
                     continue;
                 }
-                visited.add(p);
 
-                double distance = Math.sqrt(x - Math.abs(px) + Math.abs(y - py));
-                if (minDistance < distance) {
-                    continue;
+                if (current.equals(target)) {
+                    return result;
                 }
-                minDistance = Math.min(minDistance, distance);
 
-                q.add(List.of(px, py, count + 1));
+                visited.add(current);
+
+                for (int[] d : DIRECTIONS) {
+                    Position next = new Position(current.x + d[0], current.y + d[1]);
+                    if (visited.contains(next) || next.x < -1 || next.y < -1) {
+                        continue;
+                    }
+                    queue.add(next);
+                }
             }
+
+            ++result;
         }
 
         return -1;

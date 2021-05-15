@@ -10,6 +10,7 @@ class SolutionTest {
             "2, 1, 1",
             "5, 5, 4",
             "217, 47, 110",
+            "2, 112, 56",
     })
     void minKnightMoves(int x, int y, int expected) {
         Solution solution = new Solution();
