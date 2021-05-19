@@ -11,7 +11,8 @@ class SolutionTest {
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
                 Arguments.of(new int[]{1, 2, 3}, 2),
-                Arguments.of(new int[]{1, 10, 2, 9}, 16)
+                Arguments.of(new int[]{1, 10, 2, 9}, 16),
+                Arguments.of(new int[]{1, 0, 0, 8, 6}, 14)
         );
     }
 
