@@ -7,9 +7,10 @@ import java.util.Queue;
 import java.util.Set;
 
 class Solution {
-    private void BFS(int n, int m, int[][] grid, Queue<List<Integer>> q, Set<List<Integer>> memo) {
+    private int BFS(int n, int m, int[][] grid, Queue<List<Integer>> q, Set<List<Integer>> memo) {
         q.clear();
         q.add(List.of(n, m));
+        int area = 0;
 
         while (!q.isEmpty()) {
             List<Integer> p = q.poll();
@@ -24,6 +25,7 @@ class Solution {
                 continue;
             }
 
+            ++area;
             memo.add(p);
 
             q.add(List.of(i + 1, j));
@@ -31,10 +33,12 @@ class Solution {
             q.add(List.of(i, j + 1));
             q.add(List.of(i, j - 1));
         }
+
+        return area;
     }
 
     public int maxAreaOfIsland(int[][] grid) {
-        int numIslands = 0;
+        int area = 0;
 
         Set<List<Integer>> memo = new HashSet<>();
         Queue<List<Integer>> q = new ArrayDeque<>();
@@ -47,11 +51,10 @@ class Solution {
                     continue;
                 }
 
-                ++numIslands;
-                BFS(i, j, grid, q, memo);
+                area = Math.max(area, BFS(i, j, grid, q, memo));
             }
         }
 
-        return numIslands;
+        return area;
     }
 }

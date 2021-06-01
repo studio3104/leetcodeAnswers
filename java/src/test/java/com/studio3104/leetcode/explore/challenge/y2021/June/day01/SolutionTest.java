@@ -22,7 +22,15 @@ class SolutionTest {
                         },
                         6
                 ),
-                Arguments.of(new int[][]{{0, 0, 0, 0, 0, 0, 0, 0}}, 0)
+                Arguments.of(new int[][]{{0, 0, 0, 0, 0, 0, 0, 0}}, 0),
+                Arguments.of(new int[][]{
+                                {1, 1, 0, 0, 0},
+                                {1, 1, 0, 0, 0},
+                                {0, 0, 0, 1, 1},
+                                {0, 0, 0, 1, 1}
+                        },
+                        4
+                )
         );
     }
 
