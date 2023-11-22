@@ -1,4 +1,4 @@
-package com.studio3104.leetcode.TopInterview150.ArrayString.p0167TwoSumIIInputArrayIsSorted;
+package com.studio3104.leetcode.TopInterview150.TwoPointers.p0167TwoSumIIInputArrayIsSorted;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
