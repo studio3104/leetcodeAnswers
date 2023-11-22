@@ -12,15 +12,19 @@ class SolutionTest {
 
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
-                Arguments.of(new int[]{3, 2, 2, 3}, 3, 2),
-                Arguments.of(new int[]{0, 1, 2, 2, 3, 0, 4, 2}, 2, 5)
+                Arguments.of(new int[]{3, 2, 2, 3}, 3, 2, new int[]{2, 2}),
+                Arguments.of(new int[]{0, 1, 2, 2, 3, 0, 4, 2}, 2, 5, new int[]{0, 1, 3, 0, 4})
         );
     }
 
     @ParameterizedTest
     @MethodSource("argumentsProvider")
-    void removeElement(int[] nums, int val, int expected) {
+    void removeElement(int[] nums, int val, int expected, int[] expectedNums) {
         int result = solution.removeElement(nums, val);
         Assertions.assertEquals(expected, result);
+
+        for (int i = 0; i < expectedNums.length; ++i) {
+            Assertions.assertEquals(expectedNums[i], nums[i]);
+        }
     }
 }
